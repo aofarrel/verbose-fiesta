@@ -13,3 +13,7 @@ From here, you'll be redirect to ORCID. With just a few clicks, you will now see
 Now that your account is linked, when someone views an organization page of which you are a member, your ORCID will show up, helping connect your work on Dockstore with all of your other scientific contributions.
 
 ![The author's ORCID showing up in the UCSC Genomics Institute members page on Dockstore](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Dockstore/Images/orcid_in_members_page.png)
+
+You can also see the ORCID of members who have starred a workflow or tool. If you press the number next to the star button in the top right of a tool, you will see a list of stargazers. Stargazers with an ORCID will have that ORCID displayed.
+
+![ORCID showing up for a stargazer](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Dockstore/Images/orchid_stargazer.png)
