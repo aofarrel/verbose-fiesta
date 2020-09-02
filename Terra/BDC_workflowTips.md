@@ -69,7 +69,7 @@ Because command sections of a WDL can interpret BASH commands, and BASH commands
 If you are developing a workflow and need to run multiple tests on Terra, you'll probably be updating your workflow a lot. Because Terra's UI shows neither the WDL nor the version number (if the WDL came from the Broad Methods Repo) on your workflow page, it's easy to lose track, especially if you're running multiple tests at once. Thankfully, you can extract the WDL once a workflow has finished, albeit not in the Terra UI.
 
 When you click the "view" button to bring up the job manager, take note of the ID in the top, not to be confused with the workspace-id or submission-id.
-![Screenshot showing the ID of a workflow under the first heading in the Job Manager page](https://i.imgur.com/pNrGo4S.png)
+![Screenshot showing the ID of a workflow under the first heading in the Job Manager page](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Terra/Images/BDC_workflowTips.png)
 
 You can use this ID on your local machine's command line to display the WDL on stdout.
 
