@@ -9,7 +9,7 @@ Even if you have written workflows before, it's easy to fall into some pitfalls 
   * [TODO: DRS](#todo-drs)
 - [Tips and Tricks: Runtime Attributes](#tips-and-tricks-runtime-attributes)
   * [Disks attribute must use integers](#disks-attribute-must-use-integers)
-  * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil-instead-of-sub-)
+  * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil-instead-of-sub)
 - [Tips and Tricks: Miscellanous](#tips-and-tricks-miscellanous)
   * [Be careful with comments](#be-careful-with-comments)
   * [Use Google Cloud CLI to view the WDL for any given Terra run](#use-google-cloud-cli-to-view-the-wdl-for-any-given-terra-run)
