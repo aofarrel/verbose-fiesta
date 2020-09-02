@@ -2,15 +2,39 @@
 
 Even if you have written workflows before, it's easy to fall into some pitfalls when working on Terra for the first time. While Terra runs your WDL workflows with Cromwell, just like your local machine, because it's running on Google Cloud, some things are a little different.
 
+- [Designing and Running Workflows For Terra: Tips and Tricks](#designing-and-running-workflows-for-terra--tips-and-tricks)
+  * [Helpful Resources](#helpful-resources)
+  * [Tips and Tricks: Data Access](#tips-and-tricks--data-access)
+    + [Use gs:// inputs, not https://storage.google.com](#use-gs----inputs--not-https---storagegooglecom)
+    + [Make sure your credentials are up-to-date](#make-sure-your-credentials-are-up-to-date)
+    + [TODO: DRS](#todo--drs)
+  * [Tips and Tricks: Runtime Attributes](#tips-and-tricks--runtime-attributes)
+    + [Workflow disks must be integers, not floats](#workflow-disks-must-be-integers--not-floats)
+    + [sub() does not work in WDL 1.0](#sub---does-not-work-in-wdl-10)
+  * [Tips and Tricks: Miscellanous](#tips-and-tricks--miscellanous)
+    + [Be careful with comments in command sections](#be-careful-with-comments-in-command-sections)
+    + [Forgot which WDL was used for a given workflow run? View it on the command line!](#forgot-which-wdl-was-used-for-a-given-workflow-run--view-it-on-the-command-line-)
+
+
 ## Helpful Resources
 * [Terra's WDL documentation resources](https://support.terra.bio/hc/en-us/sections/360007274612-WDL-Documentation)
 * [Cloud-based runtime attributes](https://cromwell.readthedocs.io/en/stable/RuntimeAttributes/)
 * [Understanding and controlling cloud costs](https://support.terra.bio/hc/en-us/articles/360029748111-Understanding-and-controlling-cloud-costs-)
 
+## Tips and Tricks: Data Access
+### Use gs:// inputs, not https://storage.google.com
+Terra cannot handle https://storage.google.com inputs, therefore, if one of your input files is in a Google Cloud bucket, use gs:// notation instead.
 
-## Miscellaneous Tips and Tricks
+### Make sure your credentials are up-to-date
+If you are having issues accessing controlled-access data on Terra, try refreshing your credentials on Gen3 and/or NIH.
 
-### Don't forget about runtime attributes
+### TODO: DRS
+
+|✅| "gs://topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa" | 
+|----------------------|----------------|
+|❌| "https://storage.google.com/topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa"  |
+
+## Tips and Tricks: Runtime Attributes
 Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. [See the official spec for pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
 
 ### Workflow disks must be integers, not floats
@@ -40,16 +64,8 @@ The same logic applies for memory.
 |❌ if WDL 1.0, ✅ otherwise| `memory: sub(memory, "\\..*", "") + " GB"` |
 |❌ | `memory: memory` |
 
-### Use gs:// inputs, not https://storage.google.com
-Terra cannot handle https://storage.google.com inputs, therefore, if one of your input files is in a Google Cloud bucket, use gs:// notation instead.
 
-|✅| "gs://topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa" | 
-|----------------------|----------------|
-|❌| "https://storage.google.com/topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa"  |
-
-### Make sure your credentials are up-to-date
-If you are having issues accessing controlled-access data on Terra, try refreshing your credentials on Gen3 and/or NIH.
-
+## Tips and Tricks: Miscellanous
 ### Be careful with comments in command sections
 Because command sections of a WDL can interpret BASH commands, and BASH commands sometimes make use of the # symbol, sometimes Cromwell misinterprets comments as syntax. This usually only happens if there are special characters in the comment; alphanumerics should work fine.
 
