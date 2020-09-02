@@ -3,14 +3,14 @@
 Even if you have written workflows before, it's easy to fall into some pitfalls when working on Terra for the first time. While Terra runs your WDL workflows with Cromwell, just like your local machine, because it's running on Google Cloud, some things are a little different.
 
 - [Helpful Resources](#helpful-resources)
-- [Tips and Tricks: Data Access](#tips-and-tricks--data-access)
-  * [Use gs:// inputs](#use-gs----inputs)
+- [Tips and Tricks: Data Access](#tips-and-tricks-data-access)
+  * [Use gs:// inputs](#use-gs-inputs)
   * [Make sure your credentials are current](#make-sure-your-credentials-are-current)
-  * [TODO: DRS](#todo--drs)
-- [Tips and Tricks: Runtime Attributes](#tips-and-tricks--runtime-attributes)
+  * [TODO: DRS](#todo-drs)
+- [Tips and Tricks: Runtime Attributes](#tips-and-tricks-runtime-attributes)
   * [Disks attribute must use integers](#disks-attribute-must-use-integers)
-  * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil---instead-of-sub--)
-- [Tips and Tricks: Miscellanous](#tips-and-tricks--miscellanous)
+  * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil-instead-of-sub-)
+- [Tips and Tricks: Miscellanous](#tips-and-tricks-miscellanous)
   * [Be careful with comments](#be-careful-with-comments)
   * [Use Google Cloud CLI to view the WDL for any given Terra run](#use-google-cloud-cli-to-view-the-wdl-for-any-given-terra-run)
 
