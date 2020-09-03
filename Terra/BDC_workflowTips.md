@@ -29,12 +29,12 @@ Terra cannot handle https://storage.google.com inputs, therefore, if one of your
 |❌| "https://storage.google.com/topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa"  |
 
 ### Make sure your credentials are current
-If you are having issues accessing controlled-access data on Terra, try refreshing your credentials on Gen3 and/or NIH. TODO: LINK HOW
+If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking your eRA commons and University of Chicago DCP framework](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
 
 ### TODO: DRS
 
 ## Tips and Tricks: Runtime Attributes
-Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. [See the official spec for pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
+Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. See the official spec for [pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
 
 ### Disks attribute must use integers
 A runtime attribute commonly used on Terra is `disks` which have a string format and is used for designating a certain amount of storage. Within these strings, you must use integers, not floats. This limitation is technically not one of Terra but rather Google Cloud.
