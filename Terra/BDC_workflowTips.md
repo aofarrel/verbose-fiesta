@@ -8,8 +8,11 @@ Even if you have written workflows before, it's easy to fall into some pitfalls 
   * [Use gs:// inputs](#use-gs-inputs)
   * [Make sure your credentials are current](#make-sure-your-credentials-are-current)
 - [Tips and Tricks: Runtime Attributes](#tips-and-tricks-runtime-attributes)
+  * [Cromwell can handle preemptible VM interruptions for you](#Cromwell-can-handle-preemptible-VM-interruptions-for-you)
   * [Disks attribute must use integers](#disks-attribute-must-use-integers)
   * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil-instead-of-sub)
+- [Tips and Tricks: Efficiency](#tips-and-tricks-efficiency)
+  * [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits)
 - [Tips and Tricks: Miscellanous](#tips-and-tricks-miscellanous)
   * [Be careful with comments](#be-careful-with-comments)
   * [Use Google Cloud CLI to view the WDL for any given Terra run](#use-google-cloud-cli-to-view-the-wdl-for-any-given-terra-run)
@@ -42,6 +45,9 @@ If you are having issues accessing controlled-access data on Terra, try refreshi
 ## Tips and Tricks: Runtime Attributes
 Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. See the official spec for [pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
 
+### Cromwell can handle preemptible VM interruptions for you
+If you include the runtime attribute `preemptible` in your WDL, you can specify the number of maximum number of times Terra will request a preemptible machine for a task before defaulting back to a non-preemptible machine. For instance, if your set `preemptible: 2`, your workflow will attempt a preembtible at first, and if that machine gets preempted, it will try again with a preemptible again, and if that second try is preempted, then it will use a non-preemptible. For advice on weighing the costs and benefits of preemptibles, see [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits).
+
 ### Disks attribute must use integers
 A runtime attribute commonly used on Terra is `disks` which have a string format and is used for designating a certain amount of storage. Within these strings, you must use integers, not floats. This limitation is technically not one of Terra but rather Google Cloud.
 
@@ -71,6 +77,18 @@ The same logic applies for memory.
 
 ### Calculate size with strings
 If you have a task that is used to calculate disk size, you can simply pass it a string of the file name instead of the actual file. This will allow Terra to query the size of the file without actually downloading it to the VM.
+
+## Tips and Tricks: Efficiency
+### Saving money with preemptibles: Risks and benefits
+Preemptible VM instances are an easy way to save money when computing on Google Cloud, including Terra. You can see [Google's information about them here](https://cloud.google.com/compute/docs/instances/preemptible), but what that won't tell you is when you should or shouldn't use them when designing your workflows.
+
+A preemptible VM instance is a fraction of the cost of a non-preemptible VM instance, so they're an attractive prospect for those who want to reduce costs. However, the inherent risk of using a preemptible VM is that it can be shut down at any time ("be preempted"). This risk appears to increase over time, and Google will shut down any preemptible that has been running for more than 24 hours. It is important to note that preemptibles are defined for individual tasks, not the overall workflow -- that way, if your first task succeeds, but your second one is preempted, you will not have to re-run your first task. To restate: Preemptibles might result in you having to re-run a task, but shouldn't result in having to re-run an entire workflow.
+
+So, generally speaking, the longer you expect a task to run, the more "dangerous" it is to run it on a preemptible, and if you expect a task to take more than 24 hours then you definitely should not run it on a preemptible. Beyond that, things tend to fall into guidelines rather than hard and fast rules.
+
+Generally speaking, preemptibles are a great option if expect a task to take an hour or less. Most of the time, you can expect a preemptible to last at least four hours, so tasks in that timeframe are good candidates too. Tasks expected to take between about 5 and 20 hours depend on whether you can afford to wait double the expected the workflow time, as it is entirely possible that your 20 hour task will be preempted at 19.5 hours and have to start over from the beginning of that task. Cost should play a role in your consideration too: The cost of running a task once on a preempted preemptible and once on a non-preemptible will of course be more expensive then running once on a non-preemptible. However, the savings of using preemptibles are so great that the cost of running a task twice on preemptibles (such as if you set `preemptible: 2` and it is interrupted the first time but not the second) will usually be less than running it once on a non-preemptible.
+
+A good idea is to allow the user to enable or disable preemptibles for each task, which can save money on test runs on smaller datasets that are take less time to compute and therefore are less likely to be preempted.
 
 ## Tips and Tricks: Miscellanous
 ### Be careful with comments
