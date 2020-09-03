@@ -1,12 +1,12 @@
 # Designing and Running Workflows For Terra: Tips and Tricks
 
-Even if you have written workflows before, it's easy to fall into some pitfalls when working on Terra for the first time. While Terra runs your WDL workflows with Cromwell, just like your local machine, because it's running on Google Cloud, some things are a little different.
+Even if you have written workflows before, it's easy to fall into some pitfalls when working on Terra for the first time. While Terra runs your WDL workflows with Cromwell, just like your local machine, some things are a little different in practice.
 
 - [Helpful Resources](#helpful-resources)
 - [Tips and Tricks: Data Access](#tips-and-tricks-data-access)
+  * [General DRS tips](#general-drs-tips)
   * [Use gs:// inputs](#use-gs-inputs)
   * [Make sure your credentials are current](#make-sure-your-credentials-are-current)
-  * [TODO: DRS](#todo-drs)
 - [Tips and Tricks: Runtime Attributes](#tips-and-tricks-runtime-attributes)
   * [Disks attribute must use integers](#disks-attribute-must-use-integers)
   * [Make floats integers with ceil() instead of sub()](#make-floats-integers-with-ceil-instead-of-sub)
@@ -21,6 +21,14 @@ Even if you have written workflows before, it's easy to fall into some pitfalls 
 * [Understanding and controlling cloud costs](https://support.terra.bio/hc/en-us/articles/360029748111-Understanding-and-controlling-cloud-costs-)
 
 ## Tips and Tricks: Data Access
+
+### General DRS tips
+DRS URIs are used by TOPMed files on the Gen3 system. DRS not only helps handle access handles, it also provides a unique identifier to each file. However, if your workflow was developed with gs:// URIs in mind, you may have to make some changes to your WDL.
+
+When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths. Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks.
+
+[This diff on GitHub](https://github.com/DataBiosphere/topmed-workflow-variant-calling/pull/4/files) shows the changes that were needed to make an already existing WDL work with DRS URIs on Terra. Although it is a somewhat complicated example, it may be a helpful template for your own changes.
+
 ### Use gs:// inputs
 Terra cannot handle https://storage.google.com inputs, therefore, if one of your input files is in a Google Cloud bucket, use gs:// notation instead.
 
@@ -30,8 +38,6 @@ Terra cannot handle https://storage.google.com inputs, therefore, if one of your
 
 ### Make sure your credentials are current
 If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking your eRA commons and University of Chicago DCP framework](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
-
-### TODO: DRS
 
 ## Tips and Tricks: Runtime Attributes
 Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. See the official spec for [pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
@@ -63,6 +69,8 @@ The same logic applies for memory.
 |❌ if WDL 1.0, ✅ otherwise| `memory: sub(memory, "\\..*", "") + " GB"` |
 |❌ | `memory: memory` |
 
+### Calculate size with strings
+If you have a task that is used to calculate disk size, you can simply pass it a string of the file name instead of the actual file. This will allow Terra to query the size of the file without actually downloading it to the VM.
 
 ## Tips and Tricks: Miscellanous
 ### Be careful with comments
