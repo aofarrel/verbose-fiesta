@@ -1,4 +1,4 @@
-# Designing and Running Workflows For Terra: Tips & Tricks
+# Designing and Running Workflows For Terra: Tips And Tricks
 
 While Terra runs your WDL workflows with Cromwell, just like your local machine, some things are a little different in practice. We've compiled a list of general advice to those who are new to writing workflows for Terra's compute envirnonment and to aid with troubleshooting. This assumes some familarity with WDL itself, so those new to the world of WDL may benefit more from the spec or other resources in this BYOT document.
 
