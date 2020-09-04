@@ -26,7 +26,7 @@ While Terra runs your WDL workflows with Cromwell, just like your local machine,
 ## Tips and Tricks: Data Access
 
 ### General DRS tips
-DRS is a standardized, cloud-agnostic methods that is used to access data hosted by the Gen3 platform. When data is imported to Terra from Gen3, you will see that genomic files are access via "drs://" (rather than "gs://"). 
+DRS is a standardized, cloud-agnostic method that is used to access data hosted by the Gen3 platform. When data is imported to Terra from Gen3, you will see that genomic files are accessed via "drs://" (rather than "gs://"). 
 
 Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks. When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths.
 
@@ -40,29 +40,31 @@ Terra cannot handle https://storage.google.com inputs, therefore, if one of your
 |❌| "https://storage.google.com/topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa"  |
 
 ### Make sure your credentials are current
-If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking your eRA commons and University of Chicago DCP framework](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
+If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking Terra to external services](https://support.terra.bio/hc/en-us/articles/360038086332).
 
 ## Tips and Tricks: Runtime Attributes
 Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will be silent on local runs but will become errors when running on Terra. See the official spec for [pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
 
 ### Cromwell can handle preemptible VM interruptions for you
-If you include the runtime attribute `preemptible` in your WDL, you can specify the number of maximum number of times Terra will request a preemptible machine for a task before defaulting back to a non-preemptible machine. For instance, if your set `preemptible: 2`, your workflow will attempt a preembtible at first, and if that machine gets preempted, it will try again with a preemptible again, and if that second try is preempted, then it will use a non-preemptible. For advice on weighing the costs and benefits of preemptibles, see [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits).
+If you include the runtime attribute `preemptible` in your WDL, you can specify the maximum number of times Terra will request a preemptible machine for a task before defaulting back to a non-preemptible machine. For instance, if your set `preemptible: 2`, your workflow will attempt a preembtible at first, and if that machine gets preempted, it will try again with a preemptible again, and if that second try is preempted, then it will use a non-preemptible. For advice on weighing the costs and benefits of preemptibles, see [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits).
 
 ### Disks attribute must use integers
-A runtime attribute commonly used on Terra is `disks` which have a string format and is used for designating a certain amount of storage. Within these strings, you must use integers, not floats. This limitation is technically not one of Terra but rather Google Cloud.
+A runtime attribute commonly used on Terra is `disks` that has a string format and is used for designating a certain amount of storage. Within these strings, you must use integers, not floats. This limitation is due to Google Cloud.
 
 |✅| local-disk 10 HDD| 
 |----------------------|----------------|
 |❌| local-disk 10.010500148870051 HDD |
 
-Because `size()` returns a float, if you are basing your disk size on the size of your inputs, you will want to use `floor()` or `ceil()`, which will round a float to the previous or next integer respectively.
+Because `size()` returns a float, if you are basing your disk size on the size of your inputs, you will want to use `floor()` or `ceil()`, which will round a float to the previous or next integer, respectively.
 
 ### Make floats integers with ceil() instead of sub()
 If your WDL does not specify `version 1.0` at the top, the following is a valid disk string:
 `disks: "local-disk " + sub(disk_size, "\\..*", "") + " HDD"`
-But under WDL 1.0 rules, this will not pass womtool. Although you might be tempted to use something like this, which will pass womtool...
-`disks: disk_size`
-...that will not run on Terra. As indicated above, disk strings must be in the format of either `local-disk SIZE TYPE` or `/mount/point SIZE TYPE`, where SIZE is an integer.
+However, if your workflow is written with WDL 1.0, this specification will not pass a test with woomtool. 
+
+Further, if you attemp to use `disks: disk_size`, this will pass a test with womtool, but will throw an error in Terra.
+
+As indicated above, disk strings must be in the format of either `local-disk SIZE TYPE` or `/mount/point SIZE TYPE`, where SIZE is an integer.
 
 |✅|`disks: "local-disk " + disk_size + " HDD"`| 
 |----------------------|----------------|
@@ -80,19 +82,19 @@ If you have a task that is used to calculate disk size, you can simply pass it a
 
 ## Tips and Tricks: Efficiency
 ### Saving money with preemptibles: Risks and benefits
-Preemptible VM instances are an easy way to save money when computing on Google Cloud, including Terra. You can see [Google's information about them here](https://cloud.google.com/compute/docs/instances/preemptible), but what that won't tell you is when you should or shouldn't use them when designing your workflows.
+Preemptible VM instances are an easy way to save money when computing on Google Cloud, including Terra. You can see [Google's information about them here](https://cloud.google.com/compute/docs/instances/preemptible), but what that won't tell you is when you should or shouldn't use them when designing your workflows. 
 
 A preemptible VM instance is a fraction of the cost of a non-preemptible VM instance, so they're an attractive prospect for those who want to reduce costs. However, the inherent risk of using a preemptible VM is that it can be shut down at any time ("be preempted"). This risk appears to increase over time, and Google will shut down any preemptible that has been running for more than 24 hours. It is important to note that preemptibles are defined for individual tasks, not the overall workflow -- that way, if your first task succeeds, but your second one is preempted, you will not have to re-run your first task. To restate: Preemptibles might result in you having to re-run a task, but shouldn't result in having to re-run an entire workflow.
 
-So, generally speaking, the longer you expect a task to run, the more "dangerous" it is to run it on a preemptible, and if you expect a task to take more than 24 hours then you definitely should not run it on a preemptible. Beyond that, things tend to fall into guidelines rather than hard and fast rules.
+As a general rule of thumb, we suggest that you only use preemptibles for tasks that will run for 6 hours or less. 
 
-Generally speaking, preemptibles are a great option if expect a task to take an hour or less. Most of the time, you can expect a preemptible to last at least four hours, so tasks in that timeframe are good candidates too. Tasks expected to take between about 5 and 20 hours depend on whether you can afford to wait double the expected the workflow time, as it is entirely possible that your 20 hour task will be preempted at 19.5 hours and have to start over from the beginning of that task. Cost should play a role in your consideration too: The cost of running a task once on a preempted preemptible and once on a non-preemptible will of course be more expensive then running once on a non-preemptible. However, the savings of using preemptibles are so great that the cost of running a task twice on preemptibles (such as if you set `preemptible: 2` and it is interrupted the first time but not the second) will usually be less than running it once on a non-preemptible.
+Cost should play a role in your consideration too: The cost of running a task once on a preempted preemptible and once on a non-preemptible will of course be more expensive then running once on a non-preemptible. However, the savings of using preemptibles are so great that the cost of running a task twice on preemptibles (such as if you set `preemptible: 2` and it is interrupted the first time but not the second) will usually be less than running it once on a non-preemptible.
 
 A good idea is to allow the user to enable or disable preemptibles for each task, which can save money on test runs on smaller datasets that are take less time to compute and therefore are less likely to be preempted.
 
 ## Tips and Tricks: Miscellanous
 ### Be careful with comments
-Because command sections of a WDL can interpret BASH commands, and BASH commands sometimes make use of the # symbol, sometimes Cromwell misinterprets comments as syntax. This usually only happens if there are special characters in the comment; alphanumerics should work fine.
+Because command sections of a WDL can interpret BASH commands, and BASH commands make use of the # symbol, Cromwell can misinterpret comments as syntax. This usually only happens if there are special characters in the comment; alphanumerics should work fine.
 
 ✅ This will work:
 `command <<<`
