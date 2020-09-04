@@ -26,9 +26,9 @@ While Terra runs your WDL workflows with Cromwell, just like your local machine,
 ## Tips and Tricks: Data Access
 
 ### General DRS tips
-DRS URIs are used by TOPMed files on the Gen3 system. DRS not only helps handle access handles, it also provides a unique identifier to each file. However, if your workflow was developed with gs:// URIs in mind, you may have to make some changes to your WDL.
+DRS is a standardized, cloud-agnostic methods that is used to access data hosted by the Gen3 platform. When data is imported to Terra from Gen3, you will see that genomic files are access via "drs://" (rather than "gs://"). 
 
-When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths. Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks.
+Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks. When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths.
 
 [This diff on GitHub](https://github.com/DataBiosphere/topmed-workflow-variant-calling/pull/4/files) shows the changes that were needed to make an already existing WDL work with DRS URIs on Terra. Although it is a somewhat complicated example, it may be a helpful template for your own changes.
 
