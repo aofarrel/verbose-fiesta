@@ -1,6 +1,7 @@
-# verbose-fiesta
+# Verbose Fiesta 🥳
 Scraps of documentation for various projects. This is mostly for my own organizational purposes. Nevertheless, if you feel it could be improved, criticism and contributions are welcome. **Please be aware that this page might not represent the most up-to-date version of documentation.**
 
+The name of this repository was the random one suggested by GitHub, and since it was such a good description of my writing style, it stuck.
 
 📁 Dockstore  
 ‎ ‎ |_ Documentation related to [Dockstore](https://dockstore.org/), a UCSC/OICR collaboration for bioinformatics workflows.  
