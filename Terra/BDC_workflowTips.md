@@ -26,9 +26,10 @@ Those of you familiar with writing WDL workflows will feel right at home on Terr
 ## Tips and Tricks: Data Access
 
 ### General DRS tips
-DRS URIs are used by TOPMed files on the Gen3 system. DRS provides a unique GUID for TOPMed files and helps with handling  However, if your workflow was developed with gs:// URIs in mind, you may have to make some changes to your WDL.
 
-When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths. Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks.
+DRS is a standardized, cloud-agnostic method that is used to access data hosted by the Gen3 platform. When data is imported to Terra from Gen3, you will see that genomic files are accessed via "drs://" (rather than "gs://"). 
+
+Cromwell will automatically resolve DRS URIs for you (assuming your credentials are up-to-date, see below) but depending on how your inputs are set up, some changes might be necessary, such as if you're using symlinks. When working with DRS URIs, sometimes you will want to have your inputs be considered strings rather than file paths.
 
 [This diff on GitHub](https://github.com/DataBiosphere/topmed-workflow-variant-calling/pull/4/files) shows the changes that were needed to make an already existing WDL work with DRS URIs on Terra. Although it is a somewhat complicated example, it may be a helpful template for your own changes.
 
@@ -40,27 +41,33 @@ Terra does not support https://storage.google.com inputs, therefore, if one of y
 |❌| "https://storage.google.com/topmed_workflow_testing/topmed_aligner/reference_files/hg38/hs38DH.fa"  |
 
 ### Make sure your credentials are current
-If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking your eRA commons and University of Chicago DCP framework](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
+If you are having issues accessing controlled-access data on Terra, try refreshing your credentials. See Terra support on [linking Terra to external services](https://support.terra.bio/hc/en-us/articles/360038086332).
 
 ## Tips and Tricks: Runtime Attributes
 Running WDL locally will ignore a WDL's values for runtime attributes that only apply to the cloud, such as `disks` or `memory`. That means if you had issues with those values, such as using incorrect syntax (see below), those issues will not raise an error on local runs, but will become problems when running on Terra. See the official spec for [pointers on the memory attribute](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#memory).
 
 ### Cromwell can handle preemptible VM interruptions for you
-If you include the runtime attribute `preemptible` in your WDL, you can specify the number of maximum number of times Terra will request a preemptible machine for a task before defaulting back to a non-preemptible machine. For instance, if your set `preemptible: 2`, your workflow will attempt a preembtible at first, and if that machine gets preempted, it will try again with a preemptible again, and if that second try is preempted, then it will use a non-preemptible. This process will be done without you having to restart the workflow yourself. For advice on weighing the costs and benefits of preemptibles, and an explanation as to what preemptible machines actually are, see [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits).
+
+If you include the runtime attribute `preemptible` in your WDL, you can specify the maximum number of times Terra will request a preemptible machine for a task before defaulting back to a non-preemptible machine. For instance, if your set `preemptible: 2`, your workflow will attempt a preembtible at first, and if that machine gets preempted, it will try again with a preemptible again, and if that second try is preempted, then it will use a non-preemptible. For advice on weighing the costs and benefits of preemptibles, see [Saving money with preemptibles: Risks and benefits](#saving-money-with-preemptibles-risks-and-benefits).
 
 ### Disks attribute must use integers
-A runtime attribute commonly used on Terra is `disks` to designate certain amount of storage. This variable has a string format. Due to the way Google Cloud works, within these strings, you must use integers, not floats.
+A runtime attribute commonly used on Terra is `disks`, used for designating a certain amount of storage. This variable has a string format. Due to the way Google Cloud works, within these strings, you must use integers, not floats.
 
 |✅| local-disk 10 HDD| 
 |----------------------|----------------|
 |❌| local-disk 10.010500148870051 HDD |
 
-Because `size()` returns a float, if you are basing your disk size on the size of your inputs, you will want to use `floor()` or `ceil()`, which will round a float to the previous or next integer respectively.
+Because `size()` returns a float, if you are basing your disk size on the size of your inputs, you will want to use `floor()` or `ceil()`, which will round a float to the previous or next integer, respectively.
 
 ### Avoid using sub() to coerce floats into ints
 If your WDL does not specify `version 1.0` at the top, where `disk_size` was calculated elsewhere and is a float, the following is a valid disk string:
 `disks: "local-disk " + sub(disk_size, "\\..*", "") + " HDD"`
-But under WDL 1.0 rules, this will not pass womtool. Although attempting to use just the float will pass womtool, `disks: disk_size` will not run on Terra. As indicated above, disk strings must be in the format of either `local-disk SIZE TYPE` or `/mount/point SIZE TYPE`, where SIZE is an integer.
+
+However, if your workflow is written with WDL 1.0, this specification will not pass a test with woomtool. 
+
+Further, if you attemp to use `disks: disk_size`, this will pass a test with womtool, but will throw an error in Terra.
+
+As indicated above, disk strings must be in the format of either `local-disk SIZE TYPE` or `/mount/point SIZE TYPE`, where SIZE is an integer.
 
 |✅|`disks: "local-disk " + disk_size + " HDD"`| 
 |----------------------|----------------|
@@ -82,15 +89,15 @@ Preemptible VM instances are an easy way to save money when computing on Google 
 
 When running a workflow on Terra, each individual task on a workflow is executed on a virtual machine (VM) that exists on Google Cloud. A preemptible VM instance is a fraction of the cost of a non-preemptible VM instance, so they are an attractive prospect for those who want to reduce costs. (Exactly what "a fraction" means varies, but generally is in the realm of 10%-50% the cost of a non-preemptible.) However, the inherent risk of using a preemptible VM is that it can be shut down at any time ("be preempted"). This risk appears to increase over time, and Google will shut down any preemptible that has been running for more than 24 hours. When a preemptible is shut down, a task must restart from the beginning, even if it had nearly completed. It is important to note that preemptibles are defined for individual tasks, not the overall workflow -- that way, if your first task succeeds, but your second one is preempted, you will not have to re-run your first task. To restate: Preemptibles might result in you having to re-run a task, but should not result in having to re-run an entire workflow.
 
-In other words, the longer you expect a task to run, the more "dangerous" it is to run it on a preemptible, and if you expect a task to take more than 24 hours then you definitely should not run it on a preemptible. Beyond that, things tend to fall into guidelines rather than hard and fast rules.
+As a general rule of thumb, we suggest that you only use preemptibles for tasks that will run for 6 hours or less. 
 
-Generally speaking, preemptibles are a great option if expect a task to take an hour or less. Most of the time, you can expect a preemptible to last at least four hours, so tasks in that timeframe are good candidates too. Tasks expected to take between about 5 and 20 hours depend on whether you can afford to wait double the expected the workflow time, as it is entirely possible that your 20 hour task will be preempted at 19.5 hours and have to start over from the beginning of that task. Cost should play a role in your consideration too: The cost of running a task once on a preempted preemptible and once on a non-preemptible will of course be more expensive then running once on a non-preemptible. However, the savings of using preemptibles are so great that the cost of running a task twice on preemptibles (such as if you set `preemptible: 2` and it is interrupted the first time but not the second) will usually be less than running it once on a non-preemptible.
+Cost should play a role in your consideration too: The cost of running a task once on a preempted preemptible and once on a non-preemptible will of course be more expensive then running once on a non-preemptible. However, the savings of using preemptibles are so great that the cost of running a task twice on preemptibles (such as if you set `preemptible: 2` and it is interrupted the first time but not the second) will usually be less than running it once on a non-preemptible.
 
 When writing WDL workflows, it is recommended to allow the user to enable or disable preemptibles for each task. This will allow the user to save money on test runs on smaller datasets that are take less time to compute and therefore are less likely to be preempted, while still having the option to avoid preemtibles if they need a task to complete as soon as possible and don't want to wait for it to possibly have to retry.
 
 ## Tips and Tricks: Miscellanous
 ### Be careful with comments
-Because command sections of a WDL can interpret BASH commands, and BASH commands sometimes make use of the # symbol, sometimes Cromwell misinterprets comments as syntax. This usually only happens if there are special characters in the comment; alphanumerics should work fine.
+Because command sections of a WDL can interpret BASH commands, and BASH commands make use of the # symbol, Cromwell can misinterpret comments as syntax. This usually only happens if there are special characters in the comment; alphanumerics should work fine.
 
 ✅ This will work:
 `command <<<`
