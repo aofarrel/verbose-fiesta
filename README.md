@@ -23,9 +23,9 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [DataBiosphere repo, AnVIL branch](https://github.com/DataBiosphere/BYOD-to-Terra/blob/anvil/full_documentation.md)  
 ‎ ‎ |_ BDC_BYODtoTerra.md -- BioData Catalyst ver of BYOD overview (includes Gen3)  
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
+‎ ‎ |_ BDC_workflowTips.md -- currently standalone    
+‎ ‎ |_ BDC_workflowTips.md -- currently standalone    
 ‎ ‎ |_ BDC_workflowTips.md -- currently standalone  
- ‎ |_ BDC_workflowTips.md -- currently standalone  
-  ‎|_ BDC_workflowTips.md -- currently standalone  
   |_ WS_TOPMedAligner_Featured_WS.md  
   |_ WS_TOPMedAligner_Template_WS.md  
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [the Gen3 template workspace on Terra](https://app.terra.bio/#workspaces/biodata-catalyst/TOPMed%20Aligner%20Gen3%20Data)  
