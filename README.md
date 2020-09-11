@@ -25,7 +25,7 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
 ‎ ‎ |_ **BDC_workflowTips.md** -- currently standalone      
 ‎ ‎ |_ **Introduction_to_Terra's_Terminal**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [this hackmd.io doc](https://hackmd.io/@AshedPotatoes/rkEb7PTHL)
+ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [this hackmd.io doc](https://hackmd.io/@AshedPotatoes/rkEb7PTHL)  
 ‎ ‎ |_ **WS_TOPMedAligner_Featured_WS.md** -- planned featured workspace   
 ‎ ‎ |_ **WS_TOPMedAligner_Template_WS.md**  
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [the Gen3 template workspace on Terra](https://app.terra.bio/#workspaces/biodata-catalyst/TOPMed%20Aligner%20Gen3%20Data)  
