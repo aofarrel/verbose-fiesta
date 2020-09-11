@@ -1,12 +1,12 @@
 # Verbose Fiesta 🥳
-Scraps of documentation for various projects, some finished, some still drafts. This is mostly for my own organizational purposes. Nevertheless, if you feel it could be improved, criticism and contributions are welcome. **Please be aware that this page might not represent the most up-to-date version of documentation.**
+Scraps of documentation for various projects, some finished, some still drafts. This is mostly for my own organizational purposes. Nevertheless, if you feel it could be improved, criticism and contributions are welcome. **Please be aware that this page might not represent the most up-to-date version of documentation.** Also note that this mirroring is done manually, so contribution history that occurred on repos besides this one is perserved on said repos.
 
 The name of this repository was the random one suggested by GitHub, and since it was such a good description of my writing style, it stuck.
 
 ## Brief overview
 Dockstore folder: Documentation related to [Dockstore](https://dockstore.org/), a UCSC/OICR collaboration for bioinformatics workflows. 
 
-Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend. This repo does *not* contain the notebooks I wrote for BYOD use cases because those are already [mirrored on ttt](https://github.com/aofarrel/ttt), but it *will* contain the markdown introduction of those workspaces.  
+Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend. This repo does *not* contain the notebooks I wrote for BYOD use cases because those are already [mirrored on ttt](https://github.com/aofarrel/ttt).
 
 ## Index
 
