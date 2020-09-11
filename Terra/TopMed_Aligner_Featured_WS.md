@@ -1,27 +1,25 @@
-# TOPMed Aligner (Complete Edition)
+# TOPMed Aligner (Parred Down)
 ###### tags: `aligner`
 
-In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra, Dockstore, and Gen3. This is beginner-oriented tutorial walks you through how each of these platforms interact with one another. We will start using a test dataset and scale up to using different data models.
+In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra and Dockstore. This is beginner-oriented tutorial walks you through how each of these platforms interact with one another. We will start using a test dataset and scale up to using different data models.
+
+Please note that if you are looking for information about Gen3 and its data model, please see this template workspace instead. INSERT LINK HERE !!! !!! !!! !!! 
 
 ## Data Models Covered in this Tutorial
-One aim of this tutorial is to help you learn multiple data models and how to interact with them so that you can easily import data from multiple sources. This can help you bring your own data to the BioData Catalyst platform and compare it with the TOPMed data that is currently hosted in this system.
+One aim of this tutorial is to help you learn how to interact with data models already on Terra. This can help you bring your own data to the BioData Catalyst platform and compare it with the TOPMed data that is currently hosted in this system.
 
-First, we will run through the aligner with test data, showing you how to import from Dockstore. Then, we will show you how to find data in Terra, bring it to your workspace, and use the Terra data model for the 1000 Genomes Project. Next, you will learn how to import TOPMed data from Gen3, which uses a more complex graph-based data model. However, in order to use TOPMed data from Gen3, you must already have access to this data that is access controlled through dbGaP.  If you don't have dbGaP access, worry not -- you'll still be able to run this workflow on open-access data we have provided. At the end, we will give you instructions on running this aligner on your own data.
+First, we will run through the aligner with test data, showing you how to import from Dockstore. Then, we will show you how to find data in Terra, bring it to your workspace, and use the Terra data model for the 1000 Genomes Project. At the end, we will give you instructions on running this aligner on your own data.
 
-# Step 1: Setting Up
-First of all, you will need to clone this workspace to your account. See [Terra's documentation on that](https://support.terra.bio/hc/en-us/articles/360026130851-How-to-clone-a-workspace) if needed. You will need to connect a billing account to your cloned workspace. That billing account will be charged when you run the steps in this workspace. For more information on how to avoid runaway costs, see [this article here](https://support.terra.bio/hc/en-us/articles/360029748111) for an overview, or [this one](https://support.terra.bio/hc/en-us/articles/360029772212) for specific examples.
+# Setting Up
+First of all, you will need to clone this workspace to your account. See [Terra's documentation on that](https://support.terra.bio/hc/en-us/articles/360026130851-How-to-clone-a-workspace) if needed. You will need to connect a billing account to your cloned workspace. That billing account will be charged when you run the steps in this workspace. For more information on how to avoid runaway costs, see [this article here](https://support.terra.bio/hc/en-us/articles/360029748111) for an overview, or [this one](https://support.terra.bio/hc/en-us/articles/360029772212) for specific examples. 
 
-If you are planning to import controlled access data from Gen3, you should set up an Authorization Domain to protect your work. This will prevent you from inadvertently sharing data that shouldn't be shared. Learn more in this [article](https://support.terra.bio/hc/en-us/articles/360039415171). 
-
-As you go through this tutorial, you will probably want to keep this page open on a separate tab so you can easily read these directions while navigating on Gen3, Dockstore, and the workflow section of Terra.
-
-# Step 2: Using a JSON From Dockstore with Test Data
+# Using a JSON From Dockstore with Test Data
 Background info (optional):
 * [What is TOPMed?](https://www.nhlbiwgs.org/)
 * [What is Dockstore?](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/dockstore)
 * [How to use JSONs on Terra to run workflows faster](https://support.terra.bio/hc/en-us/articles/360027735471-Getting-workflows-up-and-running-faster-with-a-JSON-file)
 
-Now that you have copied over this workspace and connected it to a billing account, you'll be able to run the workflows contained within. For now, we will be testing our aligner on open-access data generously provided by TOPMed. Much of TOPMed data is controlled access, but this particular portion is unrestricted. Because we will later on be going through controlled access TOPMed data, we will be calling this open access snippet "the JSON test data" for clarity.
+Now that you have copied over this workspace and connected it to a billing account, you'll be able to run the workflows contained within. For now, we will be testing our aligner on open-access data generously provided by TOPMed. Much of TOPMed data is controlled access, but this particular portion is unrestricted.
 
 You might have used aligners on the command line before. Usually, this involves putting a long string of variables into the command line, often in a set order. Here on Terra we do things a little bit differently -- you have a GUI to allow you to see which files you're putting in more clearly. You also have the option of uploading a JSON file to fill this out for you. Let's try that now.  In the top tabs of Terra, click on WORKFLOWS and you will see the alignment workflow. Select the aligner workflow.
 
@@ -49,8 +47,6 @@ On the top left next to the Terra logo, you will see three bars. Click on that a
 ![indicator of where to get to Terra's library page](https://github.com/aofarrel/tutorials/blob/master/resized_bdc_terra_data.png?raw=true)
 
 You'll be taken to a workspace for the 1000 Genomes project. Click on the DATA tab at the top and you will be taken to a page that shows more than 2000 samples. We don't need all 2504 samples for our tests, so let's click on "sample (2504)" and just select the first 5 rows. You could just import to your Terra workspace directly, or download a TSV. Let's just import directly. Once this completes, we can return to this workspace.
-
-{fix photo: have user upload to Terra directly}
 
 Now you have the links necessary to use this 1000 Genomes data. This data is now in the Google Bucket associated with this workspace -- well, to be specific, this table is in your Google Bucket. The actual CRAM files themselves remain in the same buckets, you just now have a table that contains links to them in your workspace's Google Bucket. Each workspace has its own associated Google Bucket. When dealing with 1000 Genomes data from Terra, you will notice this data gets uploaded as a datatable called "Samples." As we will see later on, not all datasets follow this convention.
 
@@ -99,34 +95,7 @@ As the aligner does its thing, it will begin writing files to the disk -- or, ra
 
 Remember that workflow ID we took note of earlier? That workflow ID is also the name of the folder that your workflow is writing to. Keep in mind *every time* you run a workflow, a new folder will be created, even if you are just running the same workflow on the same data with the same parameters. In your workspace's file system, your output data for the aligner will be stored in `Files/{submission ID}/TopMedAligner/{workflow ID}/call-PostAlign/`. So, for instance, in the screenshot above my submission ID started with "b17b9937-ff17-46e8-b20b-798dc3d4ebf2" and my workflow ID started with "2368abf3-0e2a-4cd7-b10a-89d4d1f9002d." So my output files are located in `Files / b17b9937-ff17-46e8-b20b-798dc3d4ebf2 / TopMedAligner / 2368abf3-0e2a-4cd7-b10a-89d4d1f9002d / call-PostAlign /`. Of course, these files will only be created once the aligner finishes -- if your workflow is running but hasn't finished yet, the `call-PostAlign` folder might not exist yet.
 
-
-# Step 5: Aligning with Controlled Access Data (Gen3 Data Model)
-Background info (optional, but you do need at least a basic familiarity with how Gen3 stores data):
-* [How Gen3 stores data](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/explore_data/gen3-discovering-data)
-* [Gen3's data dictionary](https://gen3.biodatacatalyst.nhlbi.nih.gov/DD)
-* [How Gen3 data interacts with Terra](https://support.terra.bio/hc/en-us/articles/360038087312)
-
-First of all, let's set up Terra to use our dbGaP credentials for workflows we will be running. Please see [Terra's documentation on the subject](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
-
-Head on over to [Gen3](https://gen3.biodatacatalyst.nhlbi.nih.gov/) and log in by clicking "Profile" in the top right hand corner. You will need to log in using your NIH eRA Commons ID. When you click on "Exploration" you will see all subjects and studies you have access to. Use filters on the right hand side of the screen to select what you are interested in. For instance, you could limit your search to subjects with between 66% - 99% carotid stenosis.
-
-![censored view of Gen3 when you are logged in, with "export to Terra" button highlighted](https://github.com/aofarrel/tutorials/blob/master/gen3_overview_with_text_resized.png?raw=true)
-
-After selecting a group of subjects, click the red "Export To Terra" button to do precisely that. Bear in mind that exporting may take a few minutes and you shouldn't navigate away from the page while this is happening. Once it completes, you will be taken to a Terra page where you can choose which workspace to put your data into.
-
-### DRS: How We Keep Data Safe
-
-Now that you're dealing with controlled-access data, you will notice that links to that data are formatted differently. If you check the JSON from step 2, you'll see that those URLs were in the gs:// form, which is used for interacting with Google Buckets. This time, you are now dealing with drs:// instead. Technically speaking these are URIs  (Uniform Resource Identifiers; a URL is a type of URI). GA4GH uses DRS (Data Repository Service) URIs for controlled access data. For more information, please see [Terra's documentation on GA4GH's Data Repository Service](https://support.terra.bio/hc/en-us/articles/360039330211).
-
-### Gen3's Data Structure
-The links at the top of this section should serve as an explanation as to how Gen3 data is stored. But even with that background, it may still look a little odd when imported into Terra, so we wanted to make note of a few things.
-
-At the top you're see "Submitted Aligned Reads." If you scroll across that, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. As with what we did for the 1000 Genomes data above, when running this workflow, we can simply select the data we want from the dropdown and enter "this.object_id" as the `input_cram_file`. (We do not enter this.cram like before as that is not the name of the column header for Gen3's data.) **Because these are case-sensitive, please note that "object_id" cannot be entered as "object_ID."**
-
-We don't need to input CRAI files for the aligner. However, let's pretend we did for the sake of learning more about Gen3's data structure. CRAI files are considered a child of CRAM files, or in other words, "submitted aligned reads" table (which includes the CRAM files and their metadata) is the parent of "aligned reads index" table (the CRAI files and their metadata). When dealing with Gen3 data, children know their parents, but not vice versa. In other words, the table containing CRAI files also links to the table that contains CRAM files. We can take advantage of this by going back to the drop down menu and selecting "Aligned Reads Index" instead of "Submitted Aligned Reads." For `input_crai_file`, you simply enter that table's link to the CRAI files, ie, "this.object_id." And for `input_cram_file`, the correct entry is "this.submitted_aligned_reads.object_id". Handy, isn't it?
-
 # Bring Your Own Data (BYOD)
-
 We'll now move onto a typical Bring Your Own Data (BYOD) situation. While Gen3 hosts TOPMed data and the open-access 1000 Genomes project, you may have your own data somewhere out there that you're looking to bring into Terra. Exactly how you do that will depending on where that data is stored We can't account for every possible scenario here, but we tried to handle the most common ones.
 
 There is a section with common pitfalls after these sections, please see if it you have any errors.
@@ -140,6 +109,9 @@ Take another look at that JSON, and you will see that the input files are in the
 
 ### ...behind DRS URIs
 In order to use data behind DRS URIs, [you will need to have your Terra account set up for controlled access data](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra). Once this is set up, you can use DRS URIs as if they were gs:// URIs, that is, putting them in as direct inputs to your workflows. **Note that some workflows may require modification to work with DRS URIs. (For instance, our good friend Walt at UCSC had to adjust the variant caller's WDL for this workspace!)**
+
+### ...on Gen3
+Please see this template workspace INSERT LINK HERE!!! !!!!!! ! !!!! !!!! in order to directly import Gen3 data into a workspace.
 
 ### ...on my local machine
 You can upload data directly from your local machine to Terra using Terr's UI. [Please see Option 1 in Terra's documentation here](https://support.terra.bio/hc/en-us/articles/360024056512-Uploading-to-a-workspace-Google-bucket). Because you are uploading directly to your workspace bucket in this method, your data can easily be accessed by workflows.
@@ -204,6 +176,8 @@ There's two important things to take away from this:
 We've now gone over how to set up the TOPMed alignment workflow to work with small amounts of test data from TOPMed ("the JSON test data"),  Terra's  1000 Genomes data model, the Gen3 graph-model, and finally, your own data. We now leave you with some final notes:
 * [How to run WDLs from Dockstore](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/community_tools/dockstore-example) -- useful if you want to preform further analysis on your newly aligned data
 
+If you are looking to run the aligner on Gen3 data, please see the template workspace here for instructions.
+
 
 ------
 
@@ -213,8 +187,6 @@ WDL script and bug fixing: Walt Shands
 Dockerized TopMED Aligner: Jonathon LeFaive  
 Edits and bug-squashing: Michael Baumann, Beth Sheets  
 
-
-This workspace was completed under the NHLBI BioData Catalyst project.
 
 ### Workspace change log 
 
