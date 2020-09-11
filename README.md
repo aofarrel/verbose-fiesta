@@ -6,7 +6,7 @@ The name of this repository was the random one suggested by GitHub, and since it
 ## Brief overview
 Dockstore folder: Documentation related to [Dockstore](https://dockstore.org/), a UCSC/OICR collaboration for bioinformatics workflows. 
 
-Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend.  
+Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend. This repo does *not* contain the notebooks I wrote for BYOD use cases because those are already [mirrored on ttt](https://github.com/aofarrel/ttt), but it *will* contain the markdown introduction of those workspaces.  
 
 ## Index
 
