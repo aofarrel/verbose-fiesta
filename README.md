@@ -12,12 +12,12 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 
 📁 Dockstore  
 ‎ ‎ |_ ORCID.md -- markdown version of ORCID doc, images broken due to how Dockstore hosts images  
-  |_ ORCID.rst -- rst version of ORCID doc, mirroed from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
+   |_ ORCID.rst -- rst version of ORCID doc, mirroed from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Dockstore documentation  
 📁 Terra  
  ‎ |_ AnVIL_BYODtoTerra.md -- AnVIL ver of BYOD overview (excludes Gen3), mirrored from [DataBiosphere repo, AnVIL branch](https://github.com/DataBiosphere/BYOD-to-Terra/blob/anvil/full_documentation.md)  
-  ‎|_ BDC_BYODtoTerra.md -- BioData Catalyst ver of BYOD overview (includes Gen3), mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
-  |_ BDC_workflowTips.md -- currently standalone  
+  ‎ |_ BDC_BYODtoTerra.md -- BioData Catalyst ver of BYOD overview (includes Gen3), mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
+   |_ BDC_workflowTips.md -- currently standalone  
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation
