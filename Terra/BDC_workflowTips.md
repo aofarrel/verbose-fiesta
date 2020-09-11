@@ -63,9 +63,7 @@ Because `size()` returns a float, if you are basing your disk size on the size o
 If your WDL does not specify `version 1.0` at the top, where `disk_size` was calculated elsewhere and is a float, the following is a valid disk string:
 `disks: "local-disk " + sub(disk_size, "\\..*", "") + " HDD"`
 
-However, if your workflow is written with WDL 1.0, this specification will not pass a test with woomtool. 
-
-Further, if you attemp to use `disks: disk_size`, this will pass a test with womtool, but will throw an error in Terra.
+However, if your workflow is written with WDL 1.0, this specification will not pass a test with woomtool. Further, if you attempt to use `disks: disk_size`, this will pass a test with womtool, but will throw an error in Terra.
 
 As indicated above, disk strings must be in the format of either `local-disk SIZE TYPE` or `/mount/point SIZE TYPE`, where SIZE is an integer.
 
