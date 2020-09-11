@@ -1,4 +1,6 @@
-# TOPMed Aligner (Template Workspace Version)
+# TOPMed Aligner (Demo Template Workspace Version, Pre-F2F)
+###### tags: `aligner` `archive`
+*Note from Ash: Text in here is derived from a more complete tutorial for the purposes of demonstration. That tutorial scales up from 1000 Genomes data hosted on Terra, while this template workspace is focused on just Gen3 data. Text in here might change as I make sure this one can stand on its own.* 
 
 In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra, Dockstore, and Gen3. This is beginner-oriented tutorial walks you through how each of these platforms interact with one another. We will start using a test dataset and scale up to using different data models.
 
@@ -9,7 +11,6 @@ You will learn how to import TOPMed data from Gen3, which uses a more complex gr
 
 # Using the Gen3 data model
 Background info (optional, but you do need at least a basic familiarity with how Gen3 stores data):
-* [How Terra stores data in tables](https://support.terra.bio/hc/en-us/articles/360025758392-Managing-data-with-tables-)
 * [How Gen3 stores data](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/explore_data/gen3-discovering-data)
 * [Gen3's data dictionary](https://gen3.datastage.io/DD)
 * [How Gen3 data interacts with Terra](https://support.terra.bio/hc/en-us/articles/360038087312)
@@ -27,24 +28,16 @@ Now that you're dealing with controlled-access data, you will notice that links 
 ### Gen3's Data Structure
 The links at the top of this section should serve as an explanation as to how Gen3 data is stored. But even with that background, it may still look a little odd when imported into Terra, so we wanted to make note of a few things.
 
-At the top you're see "Submitted Aligned Reads." If you scroll across that, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. As with what we did for the 1000 Genomes data above, when running this workflow, we can simply select the data we want from the dropdown and enter "this.object_id" as the `input_cram_file`.
+At the top you're see "Submitted Aligned Reads." If you scroll across that, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. As with what we did for the 1000 Genomes data above, when running this workflow, we can simply select the data we want from the dropdown and enter "this.object_id" as the `input_cram_file`. (We do not enter this.cram like before as that is not the name of the column header for Gen3's data.)
 
 We don't need to input CRAI files for the aligner. However, let's pretend we did for the sake of learning more about Gen3's data structure. CRAI files are considered a child of CRAM files, or in other words, "submitted aligned reads" table (which includes the CRAM files and their metadata) is the parent of "aligned reads index" table (the CRAI files and their metadata). When dealing with Gen3 data, children know their parents, but not vice versa. In other words, the table containing CRAI files also links to the table that contains CRAM files. We can take advantage of this by going back to the drop down menu and selecting "Aligned Reads Index" instead of "Submitted Aligned Reads." For `input_crai_file`, you simply enter that table's link to the CRAI files, ie, "this.object_id." And for `input_cram_file`, the correct entry is "this.submitted_aligned_reads.object_id". Handy, isn't it?
 
-# Running the Aligner on Your Data
+## Running the Aligner on Your Data
 
 Go to this workspace's workflows tab. You will see two buttons. Select the bubble labeled "Process multiple workflows from:", and in the drop down menu, select "Aligned Reads Index". What if you wanted to select less subjects than are in your data table? Click "Select Data" which is located to the right of the dropdown menu. This will open a new menu where you can select precisely which rows you want to run your workflow on. In this case, each row represents a subject.
-
 ![how to select individual rows using the checkboxes on the far left side of each row](https://github.com/aofarrel/tutorials/blob/master/resized_selecting_only_some_CRAMs.png?raw=true)
 
-### Setting the Inputs
-Like what was indicated in the section detailing Gen3's data structure, your input will depend on what table you select. What's easiest for our purposes is to just select "submitted aligned reads" and use the argument `this.object_id`. You will need to select this table manually.
-
-For more information on setting inputs on Terra, please see [Terra's documentation on the subject.](https://support.terra.bio/hc/en-us/articles/360026521831-Configure-a-workflow-to-process-your-data)
-
 ### To Preempt or Not to Preempt
-
-(If you already know what preemptibles are and don't want to use them, you can skip this section, as this template workspace is set up to avoid them by default.)
 
 When computing on Google Cloud, you have the option of using preemptible virtual machines. These virtual machines work essentially the same as what you expect from Google Cloud, but they are significantly cheaper (sometimes less than half the price!). There is a catch, however -- they may shut down in the middle of a task and only exist for 24 hours at most. You can find more information [from Google](https://cloud.google.com/preemptible-vms/), but let's talk about the specifics of this workspace. 
 
@@ -59,7 +52,7 @@ We've broken down some possibilities here so you can balance risk, run time, and
 | `PostAlign_preemptible_tries`​ = 3 and `PostAlign_max_retries`​ = 3 |  3  | 3 | 6 |
 | You don't set `PostAlign_preemptible_tries`​ nor `PostAlign_max_retries`​, ie, default values are used |  0  | 3 | 3 |
 
-Whenever `preemptible_tries` is a positive integer, the task will exhaust all preemptible tries before trying on the more expensive non-preemptible VM. The same logic applies for `PreAlign_preemptible_tries` and `PreAlign_max_retries`, as well as `Align_preemptible_tries` and `Align_max_retries`. Terra handles all this on its own; you don't have to manually restart any of these tasks as long as the workflow itself is still running.
+Whenever `preemptible_tries` is a positive integer, the task will exhaust all preemptible tries before trying on the more expensive non-preemptible VM. The same logic applies for `PreAlign_preemptible_tries` and `PreAlign_max_retries`, as well as `Align_preemptible_tries` and `Align_max_retries`, except that unlike Post-Align the default behavior is to attempt these steps on preemptible VMs three times rather than not bothering with preemptibles at all, as these steps usually complete in under 24 hours. Terra handles all this on its own; you don't have to manually restart any of these tasks as long as the workflow itself is still running.
 
 Once you have decided if you want to change the default behavior for preemptible VMs, press "save" and run your workflow.
 
@@ -80,6 +73,8 @@ As the aligner does its thing, it will begin writing files to the disk -- or, ra
 Remember that workflow ID we took note of earlier? That workflow ID is also the name of the folder that your workflow is writing to. Keep in mind *every time* you run a workflow, a new folder will be created, even if you are just running the same workflow on the same data with the same parameters. In your workspace's file system, your output data for the aligner will be stored in `Files/{submission ID}/TopMedAligner/{workflow ID}/call-PostAlign/`. So, for instance, in the screenshot above my submission ID started with "b17b9937-ff17-46e8-b20b-798dc3d4ebf2" and my workflow ID started with "2368abf3-0e2a-4cd7-b10a-89d4d1f9002d." So my output files are located in `Files / b17b9937-ff17-46e8-b20b-798dc3d4ebf2 / TopMedAligner / 2368abf3-0e2a-4cd7-b10a-89d4d1f9002d / call-PostAlign /`. Of course, these files will only be created once the aligner finishes -- if your workflow is running but hasn't finished yet, the `call-PostAlign` folder might not exist yet.
 
 
+
+
 ## Final Notes
 We've now gone over how to set up the TOPMed alignment workflow to work with small amounts of test data from TOPMed ("the JSON test data"),  Terra's  1000 Genomes data model, and the Gen3 graph-model . We now leave you with some final notes if you want to align your data from other sources using this workflow.
 * [How to run WDLs from Dockstore](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/community_tools/dockstore-example) -- useful if you want to preform further analysis on your newly aligned data
@@ -98,12 +93,7 @@ There's two important things to take away from this:
 ------
 
 # Authors
-Workspace author: Ash O'Farrell  
-WDL script and bug fixing: Walt Shands  
-Dockerized TopMED Aligner: Jonathon LeFaive  
-Edits and bug-squashing: Michael Baumann, Beth Sheets  
-  
-This workspace was completed under the NHLBI BioData Catalyst project.
+Here you can cite yourself, Walt, and Jonathon instead of in the text above. You should also say this is under the BDCat project.
 
 ### Workspace change log 
 
