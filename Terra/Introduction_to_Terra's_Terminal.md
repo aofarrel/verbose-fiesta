@@ -1,5 +1,4 @@
 # Introduction to Terra's Terminal
-###### tags: `docs`
 
 When using a workspace and scrolled to the top of the page, you may notice these icons on the top right corner of your webpage. They will lead you to one of the best-kept secrets of Terra - a command line interface.
 
