@@ -8,7 +8,9 @@ First, we will run through the aligner with test data, showing you how to import
 Next, you will learn how to import TOPMed data from Gen3, which uses a more complex graph-based data model. However, in order to use TOPMed data from Gen3, you must already have access to this data that is access controlled through dbGAP.  If you don't have dbGaP access, worry not -- you'll still be able to run this workflow on open-access data we have provided.
 
 # Step 1: Setting Up
-First of all, you will need to clone this workspace to your account. See [Terra's documentation on that](https://support.terra.bio/hc/en-us/articles/360026130851-How-to-clone-a-workspace) if needed.
+First of all, you will need to clone this workspace to your account. You can find the button for that in the far right.
+
+![cloning the workspace](https://raw.githubusercontent.com/aofarrel/tutorials/master/resized_clone_workspace.png)
 
 You will need to connect a billing account to your cloned workspace. That billing account will be charged when you run the steps in this workspace. For more information on how to avoid runaway costs, see [this article here](https://support.terra.bio/hc/en-us/articles/360029748111) for an overview, or [this one](https://support.terra.bio/hc/en-us/articles/360029772212) for specific examples.
 
@@ -44,7 +46,6 @@ Once it completes, a folder will be created in your workspace's DATA section tha
 # Step 3: Aligning With 1000 Genomes Data
 Background info (optional):
 * [What is 1000 Genomes?](https://www.internationalgenome.org/about)
-* [Understanding data in the cloud](https://support.terra.bio/hc/en-us/articles/360034335332-Understanding-Data-in-the-Cloud)
 
 So we've run an alignment on test data. That's all well and good, but for far we have only used downsampled data, which isn't all that useful for writing a paper.
 
@@ -71,7 +72,7 @@ When dealing with 1000 Genomes data from Terra, you will notice this data gets u
 Go to this workspace's workflows tab. You will see two buttons. Select the bubble labeled "Process multiple workflows from:", and in the drop down menu, select samples. This means you are selecting the 5 samples you choose from the 1000 Genomes data. What if you wanted to select less CRAMs than are in your TSV? Click "Select Data" which is located to the right of the dropdown menu. This will open a new menu where you can select precisely which rows you want to run your workflow on. In this case, each row represents a subject.
 ![how to select individual rows using the checkboxes on the far left side of each row](https://github.com/aofarrel/tutorials/blob/master/resized_selecting_only_some_CRAMs.png?raw=true)
 
-Now that have selected your CRAMs, make sure to look over the arguments that you are running this program on. You'll need to set `input_cram_file` to `this.cram` in order for it to actually use the data in the table you selected -- specifically, the CRAM column. This syntax can be used to select other column names too, but all we need is the CRAM files for this workflow. **Please note that your inputs, such as "this.cram" are case sensitive.**
+Now that have selected your CRAMs, make sure to look over the arguments that you are running this program on. You'll need to set `input_cram_file` to `this.cram` in order for it to actually use the data in the table you selected -- specifically, the CRAM column. This syntax can be used to select other column names too, but all we need is the CRAM files for this workflow.
 ![pointing out where to type "this.cram" in the workflow page before running it](https://github.com/aofarrel/tutorials/blob/master/resized_this_dot_cram.png?raw=true)
 
 ### To Preempt or Not to Preempt
@@ -129,9 +130,11 @@ Now that you're dealing with controlled-access data, you will notice that links 
 ### Gen3's Data Structure
 The links at the top of this section should serve as an explanation as to how Gen3 data is stored. But even with that background, it may still look a little odd when imported into Terra, so we wanted to make note of a few things.
 
-At the top you're see "Submitted Aligned Reads." If you scroll across that, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. As with what we did for the 1000 Genomes data above, when running this workflow, we can simply select the data we want from the dropdown and enter "this.object_id" as the `input_cram_file`. (We do not enter this.cram like before as that is not the name of the column header for Gen3's data.) **Because these are case-sensitive, please note that "object_id" cannot be entered as "object_ID."**
+At the top you're see "Submitted Aligned Reads." If you scroll across that, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_ID" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. As with what we did for the 1000 Genomes data above, when running this workflow, we can simply select the data we want from the dropdown and enter "this.object_ID" as the `input_cram_file`. (We do not enter this.cram like before as that is not the name of the column header for 1000 Genomes.)
 
-We don't need to input CRAI files for the aligner. However, let's pretend we did for the sake of learning more about Gen3's data structure. CRAI files are considered a child of CRAM files, or in other words, "submitted aligned reads" table (which includes the CRAM files and their metadata) is the parent of "aligned reads index" table (the CRAI files and their metadata). When dealing with Gen3 data, children know their parents, but not vice versa. In other words, the table containing CRAI files also links to the table that contains CRAM files. We can take advantage of this by going back to the drop down menu and selecting "Aligned Reads Index" instead of "Submitted Aligned Reads." For `input_crai_file`, you simply enter that table's link to the CRAI files, ie, "this.object_id." And for `input_cram_file`, the correct entry is "this.submitted_aligned_reads.object_id". Handy, isn't it?
+We don't need to input CRAI files for the aligner. However, let's pretend we did for the sake of learning more about Gen3's data structure. CRAI files are considered a child of CRAM files, or in other words, "submitted aligned reads" table (which includes the CRAM files and their metadata) is the parent of "aligned reads index" table (the CRAI files and their metadata).
+
+**talk about how crais know who their parent is**
 # Step 6: What's next?
 We've now gone over how to set up the TOPMed alignment workflow to work with small amounts of test data from TOPMed ("the JSON test data"),  Terra's  1000 Genomes data model, and the Gen3 graph-model . We now leave you with some final notes if you want to align your data from other sources using this workflow.
 * [How to run WDLs from Dockstore](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/community_tools/dockstore-example) -- useful if you want to preform further analysis on your newly aligned data
