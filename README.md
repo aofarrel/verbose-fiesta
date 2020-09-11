@@ -3,11 +3,22 @@ Scraps of documentation for various projects. This is mostly for my own organiza
 
 The name of this repository was the random one suggested by GitHub, and since it was such a good description of my writing style, it stuck.
 
+## Brief overview
+Dockstore folder: Documentation related to [Dockstore](https://dockstore.org/), a UCSC/OICR collaboration for bioinformatics workflows. 
+
+Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend.  
+
+## Index
+
 📁 Dockstore  
-‎ ‎ |_ Documentation related to [Dockstore](https://dockstore.org/), a UCSC/OICR collaboration for bioinformatics workflows.  
+‎ ‎ |_ ORCID.md -- markdown version of ORCID doc, images broken due to how Dockstore hosts images
+  |_ ORCID.rst -- rst version of ORCID doc, mirroed from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79) 
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Dockstore documentation  
 📁 Terra  
-‎ ‎ |_ Documentation related to [Terra](https:/terra.bio/), a Broad Institute platform for using bioinformatics workflows on a Google Cloud backend.  
+‎ ‎ |_ 
+ ‎ |_ AnVIL_BYODtoTerra.md -- AnVIL ver of BYOD overview (excludes Gen3), mirrored from [DataBiosphere repo, AnVIL branch](https://github.com/DataBiosphere/BYOD-to-Terra/blob/anvil/full_documentation.md) 
+  ‎|_ BDC_BYODtoTerra.md -- BioData Catalyst ver of BYOD overview (includes Gen3), mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md) 
+  |_ BDC_workflowTips.md -- currently standalone
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation
