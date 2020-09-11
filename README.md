@@ -1,5 +1,5 @@
 # Verbose Fiesta 🥳
-Scraps of documentation for various projects. This is mostly for my own organizational purposes. Nevertheless, if you feel it could be improved, criticism and contributions are welcome. **Please be aware that this page might not represent the most up-to-date version of documentation.**
+Scraps of documentation for various projects, some finished, some still drafts. This is mostly for my own organizational purposes. Nevertheless, if you feel it could be improved, criticism and contributions are welcome. **Please be aware that this page might not represent the most up-to-date version of documentation.**
 
 The name of this repository was the random one suggested by GitHub, and since it was such a good description of my writing style, it stuck.
 
@@ -13,7 +13,7 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 📁 Dockstore  
 ‎ ‎ |_ ORCID.md -- markdown ver of ORCID doc, images broken due to how Dockstore hosts images  
 ‎ ‎ |_ ORCID.rst -- rst ver of ORCID doc  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirroed from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
+ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Dockstore documentation  
 📁 Terra  
