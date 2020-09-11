@@ -1,5 +1,3 @@
-# TOPMed Aligner
-###### tags: `docs`
 This is a collection of workflows for the TOPMed Alignment pipeline.
 
 The original pipelines were assembled and written by Hyun Min Kang (hmkang@umich.edu) and Adrian Tan (atks@umich.edu) at the [Abecasis Lab at the University of Michigan](https://genome.sph.umich.edu/wiki/Abecasis_Lab). See the source [alignment pipeline](https://github.com/statgen/docker-alignment) repository for more information.
@@ -35,7 +33,3 @@ This pipeline implements [CCDG Pipeline standards](https://github.com/CCDG/Pipel
 #### Outputs 
 - Aligned output (CRAM)
 - Index file (CRAI)
-
-
-
-
