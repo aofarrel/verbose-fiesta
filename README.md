@@ -15,7 +15,7 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
   ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [TOPMed organization's aligner collection](https://dockstore.org/organizations/topmed/collections/alignmentt)  
 ‎ ‎ |_ **ORCID.md**    
 ‎ ‎ |_ **ORCID.rst**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> rst ver of ORCID doc, images appear broken due to how Dockstore hosts images but it works in that environment  
+ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> rst ver of ORCID doc, images look broken but work in prod  
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Dockstore documentation  
