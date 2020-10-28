@@ -1,16 +1,19 @@
 # TOPMed Aligner (Template Workspace Version)
 
-In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra, Dockstore, and Gen3. This is a beginner-oriented tutorial walks you through how each of these platforms interact with one another.
+In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra, Dockstore, and Gen3. This is beginner-oriented tutorial walks you through how each of these platforms interact with one another, specifically, how to find and hand off data from Gen3 to Terra, and then set the data up for use with a Dockstore workflow. 
+
+The workflow in this tutorial is the TOPMed aligner. This workflow is a containerized version of the pipeline University of Michigan developed to process all CRAM files available in the TOPMed program. You can use this aligner workflow to prepare data for comparison with TOPMed CRAM files. 
+
 
 ## Data Models Covered in this Tutorial
-One aim of this tutorial is to help you learn the TOPMed data model and how to interact with it. This can help you bring your own data to the BioData Catalyst platform and compare it with the TOPMed data that is currently hosted in this system.
+One aim of this tutorial is to help you learn the Gen3 data model for TOPMed and how to interact with it. This can help you bring your own data to the BioData Catalyst platform and compare it with the TOPMed data that is currently hosted in this system.
 
 You will learn how to import TOPMed data from Gen3, which uses a more complex graph-based data model than the data model used for what's already hosted on Terra, such [as Terra's version of the 1000 Genomes](https://app.terra.bio/#library/datasets/public/1000%20Genomes/data-explorer). However, in order to use TOPMed data from Gen3, you must be approved to use TOPMed data via [dbGaP](https://www.ncbi.nlm.nih.gov/books/NBK99225/). If you don't have dbGaP access, worry not -- you'll still be able to run this workflow on 1000 Genomes Data, as long as you have an NIH credential such as [eRA Commons](https://era.nih.gov/faqs.htm#II) that can get you into Gen3.
 
 ## Setting Up
 Because Gen3 hosts controlled-access data, you will need to set up your Terra account for the linkage to Gen3 to work properly. Please see [Terra's documentation on the subject](https://support.terra.bio/hc/en-us/articles/360037648172-Accessing-TCGA-Controlled-Access-workspaces-in-Terra).
 
-Also, you should set up an Authorization Domain to protect your work. This will prevent you from inadvertently sharing data that shouldn't be shared. Learn more in this [article](https://support.terra.bio/hc/en-us/articles/360039415171).
+If you are planning to work with controlled access data, you should set up an Authorization Domain to protect your work. This will prevent you from inadvertently sharing data that shouldn't be shared. Learn more in this [article](https://support.terra.bio/hc/en-us/articles/360039415171).
 
 # Using Gen3
 If you are new to using Gen3 and Terra, you may want some background information. A good overview can be found in [Understanding and Using Gen3 Data in Terra](https://support.terra.bio/hc/en-us/articles/360038087312), which will introduce you to the Gen3 data model and how it is stored in Terra. Those seeking more specific information may want to use these resources:
@@ -18,34 +21,32 @@ If you are new to using Gen3 and Terra, you may want some background information
 * [How Gen3 stores data](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/explore_data/gen3-discovering-data)
 * [Gen3's data dictionary](https://gen3.biodatacatalyst.nhlbi.nih.gov/DD)
 
-Head on over to [Gen3](https://gen3.biodatacatalyst.nhlbi.nih.gov/) and log in by clicking "Profile" in the top right hand corner. You will need to log in using your NIH eRA Commons ID. When you click on "Exploration" you will see all subjects and studies you have access to. Use filters on the right hand side of the screen to select what you are interested in. For instance, you could limit your search to subjects with a particular blood pressure. If you don't have dpGaP access to any TOPMed studies, you can use 1000 Genomes data, as it is open access.
+Head on over to [Gen3](https://gen3.biodatacatalyst.nhlbi.nih.gov/) and log in by clicking "Profile" in the top right hand corner. You will need to log in using your NIH eRA Commons ID. When you click on "Exploration" you will see all subjects and studies you have access to. Use filters on the right hand side of the screen to select what you are interested in. 
 
 #### Selecting by study/project
-If you're interested in a particular study, click the "subject" tab on the leftmost toolbar. You will see a dropdown menu to select by project ID. In addition to showing the list of studies available, they will also display consent code shorthands in this menu.
+If you're interested in a particular study, click the "subject" tab on the leftmost toolbar. You will see a dropdown menu to select by project ID. In this example, we will search by Project ID for "1000 Genomes".
 
 ![censored view of Gen3 when you are logged in, with "export to Terra" button highlighted](https://github.com/aofarrel/tutorials/blob/master/gen3_overview_with_text_resized.png?raw=true)
 
-You also have the option of selecting by diagnosis or certain phenotypic traits.
-
 #### Importing to Terra
-After selecting a group of subjects, click the red "Export To Terra" button to do precisely that. Bear in mind that exporting may take a few minutes and you shouldn't navigate away from the page while this is happening. Once it completes, you will be taken to a Terra page where you can choose which workspace to put your data into. From here, you should select "template workspace" and import into the TOPMed aligner workspace.
+After selecting a project, click the red "Export To Terra" button. Bear in mind that exporting may take a few minutes and you shouldn't navigate away from the page while this is happening. Once it completes, you will be taken to a Terra page where you can choose which workspace to put your data into. From here, you should select "template workspace" and import into the TOPMed aligner workspace.
 
 ![screenshot showing the workspace import, with the topmost selection on the right annotated with a circle as it's the option that allows us to import to a template workspace](https://raw.githubusercontent.com/aofarrel/tutorials/master/bdc_template_import_resized.png)
 
-What happens next? A copy of this exact workspace will be created, with your newly imported data inside. It will take a few minutes for the data to fully import, but once it does, you'll see the workspace has been populated with several data tables.
+What happens next? A copy of this exact workspace will be created, with several data table that hold administrative, and any clinical and biospecimen data associated with the project. Biospecimen data tables will hold DRS that point to the location of the genomic data hosted by NHLBI. You can learn more about DRS [here](https://support.terra.bio/hc/en-us/articles/360039330211-Data-Access-with-the-GA4GH-Data-Repository-Service-DRS-). It will take a few minutes for the data to fully import, but once it does, you'll see the workspace has been populated with several data tables.
 
 One of the data tables you'll see is called "Submitted Aligned Reads." If you scroll across that in Terra's UI, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "pfb:object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. When running a workflow, if we want to run a WDL on this data, we can reference that pfb:object_id column in order to enter dozens (hundreds, even) of URIs into a workflow with just a few clicks.
 
 # Running the Aligner
 The links at the top of this section should serve as an explanation as to how Gen3 data is stored. But even with that background, it may still look a little odd when imported into Terra, so let's walk through how to use these tables. If you want a more complete explanation of how these tables relate to each other, please see the optional section towards the end of this workspace.
 
-Go to this workspace's workflows tab, and you will see a WDL has already been imported from DockStore for you to play with: A WDL-ized verison of the aligner used on all TOPMed data. Select it.
+Go to this workspace's workflows tab, and you will see a WDL has already been imported from Dockstore: a Dockerized version of the [University of Michigan's aligner for TOPMed data](https://dockstore.org/workflows/github.com/DataBiosphere/topmed-workflows/UM_aligner_wdl:1.32.0?tab=info). Select it. 
 
 ![the two buttons in your workspace's data section, with the leftmost allowing you to make a new workflow, and the righmost one being for the TOPMed aligner workflow](https://raw.githubusercontent.com/aofarrel/tutorials/master/aligner_workflow_resized.png)
 
 You will see two buttons. Select the bubble labeled "Run workflow(s) with inputs defined by data table", and in the drop down menu, select "Submitted Aligned Reads". 
 
-What if you wanted to select less subjects than are in your data table? Click "Select Data" which is located to the right of the Step 2 heading. This will open a new menu where you can select precisely which rows you want to run your workflow on. In this case, each row represents a subject.
+To select only particular participants, click "Select Data" which is located to the right of the Step 2 heading. This will open a new menu where you can select precisely which rows you want to run your workflow on. In this case, each row represents a participant.
 
 ![screenshot showing the workflow input page on Terra, as described in the text proceeding this image](https://raw.githubusercontent.com/aofarrel/tutorials/master/submitted%20aligned%20reads%20redo.png)
 
@@ -142,4 +143,4 @@ This workspace was completed under the NHLBI BioData Catalyst project.
 | Feb 6, 2020 | updated dashboard text | Beth |
 | Feb 10, 2020 | gen3, job tracking, output, major revisions | Ash |
 | Mar 27, 2020 | major reorganization, removal of unneeded info, better data structure explanation | Ash |
-| Oct 28, 2020 | updated to reflect pfb prefix of Geb3 tables | Ash |
+| Oct 28, 2020 | updated to reflect pfb prefix of Geb3 tables + minor edits | Ash, Beth |
