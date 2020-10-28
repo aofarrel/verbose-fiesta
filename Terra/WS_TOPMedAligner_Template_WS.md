@@ -1,5 +1,4 @@
 # TOPMed Aligner (Template Workspace Version)
-###### tags: `aligner`
 
 In this workspace, you will be running the TOPMed alignment workflow as you learn how to use the BioData Catalyst platform powered by Terra, Dockstore, and Gen3. This is a beginner-oriented tutorial walks you through how each of these platforms interact with one another.
 
@@ -14,12 +13,10 @@ Because Gen3 hosts controlled-access data, you will need to set up your Terra ac
 Also, you should set up an Authorization Domain to protect your work. This will prevent you from inadvertently sharing data that shouldn't be shared. Learn more in this [article](https://support.terra.bio/hc/en-us/articles/360039415171).
 
 # Using Gen3
-Background info (optional, but you do need at least a basic familiarity with how Gen3 stores data):
+If you are new to using Gen3 and Terra, you may want some background information. A good overview can be found in [Understanding and Using Gen3 Data in Terra](https://support.terra.bio/hc/en-us/articles/360038087312), which will introduce you to the Gen3 data model and how it is stored in Terra. Those seeking more specific information may want to use these resources:
 * [How Terra stores data in tables](https://support.terra.bio/hc/en-us/articles/360025758392-Managing-data-with-tables-)
 * [How Gen3 stores data](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/explore_data/gen3-discovering-data)
 * [Gen3's data dictionary](https://gen3.biodatacatalyst.nhlbi.nih.gov/DD)
-
-[//]: # (NOT LIVE YET: * How Gen3 data interacts with Terra https://support.terra.bio/hc/en-us/articles/360038087312)
 
 Head on over to [Gen3](https://gen3.biodatacatalyst.nhlbi.nih.gov/) and log in by clicking "Profile" in the top right hand corner. You will need to log in using your NIH eRA Commons ID. When you click on "Exploration" you will see all subjects and studies you have access to. Use filters on the right hand side of the screen to select what you are interested in. For instance, you could limit your search to subjects with a particular blood pressure. If you don't have dpGaP access to any TOPMed studies, you can use 1000 Genomes data, as it is open access.
 
@@ -37,7 +34,7 @@ After selecting a group of subjects, click the red "Export To Terra" button to d
 
 What happens next? A copy of this exact workspace will be created, with your newly imported data inside. It will take a few minutes for the data to fully import, but once it does, you'll see the workspace has been populated with several data tables.
 
-One of the data tables you'll see is called "Submitted Aligned Reads." If you scroll across that in Terra's UI, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. When running a workflow, if we want to run a WDL on this data, we can reference that object_id column in order to enter dozens (hundreds, even) of URIs into a workflow with just a few clicks.
+One of the data tables you'll see is called "Submitted Aligned Reads." If you scroll across that in Terra's UI, you will see a column named "data_format," indicating that these are CRAM files. But where are those files actually? Keep scrolling and you will see "pfb:object_id" as a column header, and under that, several drs:// URIs. This is what Terra will be using to locate the files. Thankfully, you don't need to remember these URIs. When running a workflow, if we want to run a WDL on this data, we can reference that pfb:object_id column in order to enter dozens (hundreds, even) of URIs into a workflow with just a few clicks.
 
 # Running the Aligner
 The links at the top of this section should serve as an explanation as to how Gen3 data is stored. But even with that background, it may still look a little odd when imported into Terra, so let's walk through how to use these tables. If you want a more complete explanation of how these tables relate to each other, please see the optional section towards the end of this workspace.
@@ -52,9 +49,9 @@ What if you wanted to select less subjects than are in your data table? Click "S
 
 ![screenshot showing the workflow input page on Terra, as described in the text proceeding this image](https://raw.githubusercontent.com/aofarrel/tutorials/master/submitted%20aligned%20reads%20redo.png)
 
-Below this, you will see several arguments that can be used for this workflow. If it's not already filled out, type out `this.object_id` as the `input_cram_file`.
+Below this, you will see several arguments that can be used for this workflow. If it's not already filled out, type out `this.pfb:object_id` as the `input_cram_file`.
 
-But what is "this"? In Terra, we can use "this" to represent the data table that we selected from the drop down menu. So, in this case, "this" refers to the Submitted Aligned Reads data table. As for ".object_id", that part means that Terra is looking at the column called object_id. 
+But what is "this"? In Terra, we can use "this" to represent the data table that we selected from the drop down menu. So, in this case, "this" refers to the Submitted Aligned Reads data table. As for ".pfb:object_id", that part means that Terra is looking at the column called "pfb:object_id" in said data table. 
 
 
 For more information on using workflow inputs on Terra, please see [Terra's documentation on setting inputs.](https://support.terra.bio/hc/en-us/articles/360026521831-Configure-a-workflow-to-process-your-data)
@@ -98,7 +95,7 @@ Remember that workflow ID we took note of earlier? That workflow ID is also the 
 
 # Running on More Than One Data Table
 ### This is optional to run the aligner included in this workspace, however, certain other workflows may require you to draw upon more than one table, so this is good information to learn.
-Go back to the workflow tabs and again select the aligner. However, this time, select "Aligned Reads Index" instead of "Submitted Aligned Reads". Yes, this is a table of CRAI files, not CRAM files -- but like the CRAM table, it too links to its files using DRS URIs in the object_id column. Don't worry, we'll get back to the CRAMs in a moment.
+Go back to the workflow tabs and again select the aligner. However, this time, select "Aligned Reads Index" instead of "Submitted Aligned Reads". Yes, this is a table of CRAI files, not CRAM files -- but like the CRAM table, it too links to its files using DRS URIs in the pfb:object_id column. Don't worry, we'll get back to the CRAMs in a moment.
 
 ![screenshot of Terra's workflow UI page with the submitted aligned reads index table selected via dropdown menu](https://raw.githubusercontent.com/aofarrel/tutorials/master/aligned%20reads%20index%20redo.png)
 
@@ -106,7 +103,7 @@ Like what was indicated in the section detailing Gen3's data structure, your inp
 
 In this version of the TOPMed aligner, CRAI files optional, but for the sake of learning more about Gen3's data structure we will be using them. In Gen3's data structure, CRAI files are considered a child of CRAM files, or in other words, "submitted aligned reads" table (which includes the CRAM files and their metadata) is the parent of "aligned reads index" table (the CRAI files and their metadata). When dealing with Gen3 data, children know their parents, but not vice versa. **In summary, the table containing CRAI files also links to the table that contains CRAM files, but not vice versa.** In this particular example, that link is stored in the CRAI table as a column named submitted_aligned_reads. Note that it does not link to the table overall, but rather a given row of that table: Each row on the CRAI table points to the row of the CRAM table that its associated with. This can be a bit confusing to wrap your head around, so feel free to click through your data tables on Terra or review Gen3's documentation if you're getting a headache at this point.
 
-Why does this matter? Because you can use this to effectively use two different data tables in your analysis, even though at first glance it looks like you can only select one in the drop down menu. You simply enter that table's link to the CRAI files, ie, `this.object_id` as the input for `input_crai_file`. (You will have to scroll to find `input_crai_file` as Terra puts optional arguments below all required arguments.) And for `input_cram_file`, the correct entry is `this.submitted_aligned_reads.object_id`. Handy, isn't it?
+Why does this matter? Because you can use this to effectively use two different data tables in your analysis, even though at first glance it looks like you can only select one in the drop down menu. You simply enter that table's link to the CRAI files, ie, `this.pfb:object_id` as the input for `input_crai_file`. (You will have to scroll to find `input_crai_file` in the aligner as Terra puts optional arguments below all required arguments.) And for `input_cram_file`, the correct entry is `this.submitted_aligned_reads.pfb:object_id`. Handy, isn't it?
 
 
 # Final Notes
@@ -124,7 +121,7 @@ There's two important things to take away from this:
 2. TOPMed data is aligned to HG38. If you are running this workflow to compare your own data to TOPMed data, you must align to HG38.
 
 ### DRS: How We Keep Data Safe
-Like we hinted at earlier in this workspace, if you look at the `object_id` column of your datatables, you will notice that instead of https:// or gs://, you'll see drs:// instead. Technically speaking these are URIs  (Uniform Resource Identifiers; a URL is a type of URI). GA4GH uses DRS (Data Repository Service) URIs for controlled access data. For more information, please see [Terra's documentation on GA4GH's Data Repository Service](https://support.terra.bio/hc/en-us/articles/360039330211).
+Like we hinted at earlier in this workspace, if you look at the `pfb:object_id` column of your datatables, you will notice that instead of https:// or gs://, you'll see drs:// instead. Technically speaking these are URIs  (Uniform Resource Identifiers; a URL is a type of URI). GA4GH uses DRS (Data Repository Service) URIs for controlled access data. For more information, please see [Terra's documentation on GA4GH's Data Repository Service](https://support.terra.bio/hc/en-us/articles/360039330211).
 
 
 ------
