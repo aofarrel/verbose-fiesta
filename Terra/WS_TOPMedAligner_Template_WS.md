@@ -143,3 +143,4 @@ This workspace was completed under the NHLBI BioData Catalyst project.
 | Feb 6, 2020 | updated dashboard text | Beth |
 | Feb 10, 2020 | gen3, job tracking, output, major revisions | Ash |
 | Mar 27, 2020 | major reorganization, removal of unneeded info, better data structure explanation | Ash |
+| Oct 28, 2020 | updated to reflect pfb prefix of Geb3 tables + minor edits | Ash, Beth |
