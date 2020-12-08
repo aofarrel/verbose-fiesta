@@ -1,6 +1,6 @@
 # GWAS Tutorial in NHLBI's BioData Catalyst
 
-This tutorial workspace offers example tools for conducting mixed-models GWAS from start to finish using the [NHLBI BioData Catalyst](https://www.nhlbidatastage.org/) ecosystem. We've created a set of documents [to get you started in the BioData Catalyst system](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra). If you're ready to conduct an analysis, proceed with this dashboard: 
+This tutorial workspace offers example tools for conducting mixed-models GWAS from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We've created a set of documents [to get you started in the BioData Catalyst system](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra). If you're ready to conduct an analysis, proceed with this dashboard: 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
@@ -195,7 +195,7 @@ You can search [Dockstore](www.dockstore.org) for available workflows and export
 
 ### Authors, contact information, and funding
 
-This template was created for the [NHLBI's BioData Catalyst](https://www.nhlbidatastage.org/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
+This template was created for the [NHLBI's BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
 
 Contributing authors include:
 * [Beth Sheets](mailto:esheets@ucsc.edu) (UC Santa Cruz Genomics Institute)
