@@ -10,9 +10,9 @@ This template was set up to work with the NHLBI BioData Catalyst Gen3 data model
 
 For this tutorial, we are using synthetic phenotypic data coupled with downsampled 1000 Genomes data that has been ingested into NHLBI BioData Catalyst Powered by Gen3. This data model is likely new to most users and may take some time to become accustomed to. First, the data model is based on a graph structure that is more complex than a single columns x rows data table that you may be familiar with. Second, genomic data is accessible through DRS URLs that point to Google Cloud Buckets that hold the data. 
 
-After this tutorial, you can employ the BioData Catalyst ecosystem for more analyses. Currently, BioData Catalyst's Gen3 hosts the [TOPMed](https://www.nhlbi.nih.gov/science/trans-omics-precision-medicine-topmed-program) program, which is controlled access.  To apply for access to TOPMed, submit an application through [dbGAP](https://www.nhlbiwgs.org/topmed-data-access-scientific-community). 
+After this tutorial, you can employ the BioData Catalyst ecosystem for more analyses. Currently, BioData Catalyst's Gen3 hosts the [TOPMed](https://www.nhlbi.nih.gov/science/trans-omics-precision-medicine-topmed-program) program, which is controlled access. To apply for access to TOPMed, submit an application through [dbGAP](https://www.nhlbiwgs.org/topmed-data-access-scientific-community). 
 
-If you already have access to a TOPMEd project and have been onboarded to the BioData Catalyst platform, you should be able to access your data through BioData Catalyst powered by Gen3 and use your data with another GWAS resource we have created that you can access [here](https://app.terra.bio/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait). 
+If you already have access to a TOPMed project and have been onboarded to the BioData Catalyst platform, you should be able to access your data through BioData Catalyst Powered By Gen3 and use your data with another GWAS resource we have created that you can access [here](https://app.terra.bio/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait). 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
