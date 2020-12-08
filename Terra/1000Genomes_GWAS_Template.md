@@ -14,18 +14,18 @@ After this tutorial, you can employ the BioData Catalyst ecosystem for more anal
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 ## About the data
-To demonstrate an analysis that could be run on typical whole genome sequence data, this workspace provides mock phenotype data generated from publicly available 1000 Genomes phase 3 genotypes. Phenotypes have been simulated based on individual genotypes and known associated loci for multiple complex traits. The GCTA software⁶ was used with lists of causal variants and an estimate of narrow sense heritability⁵ for each phenotype.
+To demonstrate an analysis that could be run on typical whole genome sequence data, this workspace provides mock phenotype data generated from publicly available 1000 Genomes phase 3 genotypes. Phenotypes have been simulated based on individual genotypes and known associated loci for multiple complex traits. The GCTA software was used with lists of causal variants and an estimate of narrow sense heritability for each phenotype.
 
 Traits and sources for causal variants
-a. BMI: Giant-UKBB meta-analysis²
-b. Fasting glucose: MAGIC³
-c. Fasting insulin: MAGIC³
-d. Waist-to-hip ratio: GIANT-UKBB meta-analysis²
-e. Height: GIANT-UKBB meta-analysis²
-f. HDL: MVP⁴
-g. LDL: MVP⁴
-h. Total cholesterol: MVP⁴
-i. Triglycerides: MVP⁴
+a. BMI: Giant-UKBB meta-analysis
+b. Fasting glucose: MAGIC
+c. Fasting insulin: MAGIC
+d. Waist-to-hip ratio: GIANT-UKBB meta-analysis
+e. Height: GIANT-UKBB meta-analysis
+f. HDL: MVP
+g. LDL: MVP
+h. Total cholesterol: MVP
+i. Triglycerides: MVP
 
 **Generating the synthetic data**
 The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click here.
