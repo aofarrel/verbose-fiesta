@@ -126,7 +126,7 @@ In the 2-GWAS-preliminary-analysis notebook, we created a Sample Set data table 
 
 #### [1-vcfToGds](https://dockstore.org/workflows/github.com/manning-lab/vcfToGds)
 
-This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](https://www.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
+This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](http://si.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
 
 ##### Time and cost estimates    
 
