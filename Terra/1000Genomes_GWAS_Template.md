@@ -28,7 +28,7 @@ h. Total cholesterol: MVP
 i. Triglycerides: MVP  
 
 **Generating the synthetic data**
-The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click here.
+The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click [here](https://console.cloud.google.com/storage/browser/terra-featured-workspaces/GWAS/data_processing).
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
@@ -50,7 +50,7 @@ Next, perform mixed models genetic association tests (run as a series of batch w
 # Part 1: Navigate the NHLBI BioData Catalyst ecosystem
 
 ## 1a. Link your Terra account to Gen3 using external services
-Before you're able to access genomic data from Gen3 in the Terra data table, you need to link your Terra account to external services. Link your profile [by following these instructions](https://support.terra.bio/hc/en-us/articles/360038086332?flash_digest=2f492682b688b21da27c701af68656ac095d5803).
+Before you're able to access genomic data from Gen3 in the Terra data table, you need to link your Terra account to external services. If you have not already done so, link your profile [by following these instructions](https://support.terra.bio/hc/en-us/articles/360038086332?flash_digest=2f492682b688b21da27c701af68656ac095d5803).
 
 ## 1b. Create an Authorization Domain to protect your controlled-access data
 If you bring controlled access data into Terra, it should be registered under an Authorization Domain that limits its access to only researchers with the appropriate approvals. Learn how to set up an Authorization Domain [here](https://support.terra.bio/hc/en-us/articles/360039415171).
