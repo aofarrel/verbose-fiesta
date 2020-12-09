@@ -179,7 +179,7 @@ Learn more about uploading data to Terra [here](https://support.terra.bio/hc/en-
 Accommodating other datasets may require modifying many parts of this notebook. Inherently, the notebook is an interactive analysis where decisions are made as you go. It is not recommended that the notebook be applied to another dataset without careful thought. 
 
 ***Run an additional workflow***
-You can search [Dockstore](www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
+You can search [Dockstore](https://www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
