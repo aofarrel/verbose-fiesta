@@ -224,6 +224,7 @@ Contributing authors include:
 
 | Date | Change | Author | 
 | -------  | -------- | -------- |
+| December 9, 2020 | Update notebooks, workflows, and workspace markdown | Ash |
 | June 26, 2020 | terra_data_table_util updates | Beth |
 | Feb 26, 2020 | Added notebook to copy/extract VCF | Beth |
 | Jan 31, 2020 | Replaced text with new Broad documentation | Beth |
