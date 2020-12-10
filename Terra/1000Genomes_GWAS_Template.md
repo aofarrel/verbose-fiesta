@@ -1,37 +1,34 @@
 # GWAS Tutorial in NHLBI's BioData Catalyst
 
-This tutorial workspace offers example tools for conducting mixed-models GWAS from start to finish using the [NHLBI BioData Catalyst](https://www.nhlbidatastage.org/) ecosystem. We've created a set of documents [to get you started in the BioData Catalyst system](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra). If you're ready to conduct an analysis, proceed with this dashboard: 
+This tutorial workspace offers example tools for conducting mixed-models GWAS from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We've created a set of documents [to get you started in the BioData Catalyst system](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra). If you're ready to conduct an analysis, proceed with this dashboard: 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 ## Data Model
-
 This template was set up to work with the NHLBI BioData Catalyst Gen3 data model. In this dashboard, you'll learn how to import open access data from the Gen3 platform into this Terra template and conduct an association test. If you have never used the Gen3 data model before, we suggest you start with the tutorial [Getting Started with Gen3 Data in Terra](https://terra.biodatacatalyst.nhlbi.nih.gov/#workspaces/fc-product-demo/BioDataCatalyst-Gen3-data-on-Terra-Tutorial).
 
 For this tutorial, we are using synthetic phenotypic data coupled with downsampled 1000 Genomes data that has been ingested into NHLBI BioData Catalyst Powered by Gen3. This data model is likely new to most users and may take some time to become accustomed to. First, the data model is based on a graph structure that is more complex than a single columns x rows data table that you may be familiar with. Second, genomic data is accessible through DRS URLs that point to Google Cloud Buckets that hold the data. 
 
-After this tutorial, you can employ the BioData Catalyst ecosystem for more analyses. Currently, BioData Catalyst's Gen3 hosts the [TOPMed](https://www.nhlbi.nih.gov/science/trans-omics-precision-medicine-topmed-program) program, which is controlled access.  To apply for access to TOPMed, submit an application through [dbGAP](https://www.nhlbiwgs.org/topmed-data-access-scientific-community). 
-
-If you already have access to a TOPMEd project and have been onboarded to the BioData Catalyst platform, you should be able to access your data through BioData Catalyst powered by Gen3 and use your data with another GWAS resource we have created that you can access [here](https://app.terra.bio/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait). 
+After this tutorial, you can employ the BioData Catalyst ecosystem for more analyses. Currently, BioData Catalyst's Gen3 hosts the [TOPMed](https://www.nhlbi.nih.gov/science/trans-omics-precision-medicine-topmed-program) program, which is controlled access, in addition to the public data used in this tutorial. To apply for access to TOPMed, submit an application through [dbGAP](https://www.nhlbiwgs.org/topmed-data-access-scientific-community). If you already have access to a TOPMed project and have been onboarded to the BioData Catalyst platform, you should be able to access your data through BioData Catalyst Powered By Gen3 and use your data with another GWAS resource we have created that you can access [here](https://app.terra.bio/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait). 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 ## About the data
-To demonstrate an analysis that could be run on typical whole genome sequence data, this workspace provides mock phenotype data generated from publicly available 1000 Genomes phase 3 genotypes. Phenotypes have been simulated based on individual genotypes and known associated loci for multiple complex traits. The GCTA software⁶ was used with lists of causal variants and an estimate of narrow sense heritability⁵ for each phenotype.
+To demonstrate an analysis that could be run on typical whole genome sequence data, this workspace provides mock phenotype data generated from publicly available 1000 Genomes phase 3 genotypes. Phenotypes have been simulated based on individual genotypes and known associated loci for multiple complex traits. The GCTA software was used with lists of causal variants and an estimate of narrow sense heritability for each phenotype.
 
-Traits and sources for causal variants
-a. BMI: Giant-UKBB meta-analysis²
-b. Fasting glucose: MAGIC³
-c. Fasting insulin: MAGIC³
-d. Waist-to-hip ratio: GIANT-UKBB meta-analysis²
-e. Height: GIANT-UKBB meta-analysis²
-f. HDL: MVP⁴
-g. LDL: MVP⁴
-h. Total cholesterol: MVP⁴
-i. Triglycerides: MVP⁴
+Traits and sources for causal variants  
+a. BMI: Giant-UKBB meta-analysis  
+b. Fasting glucose: MAGIC  
+c. Fasting insulin: MAGIC  
+d. Waist-to-hip ratio: GIANT-UKBB meta-analysis  
+e. Height: GIANT-UKBB meta-analysis  
+f. HDL: MVP  
+g. LDL: MVP  
+h. Total cholesterol: MVP  
+i. Triglycerides: MVP  
 
 **Generating the synthetic data**
-The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click here.
+The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click [here](https://console.cloud.google.com/storage/browser/terra-featured-workspaces/GWAS/data_processing).
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
@@ -39,13 +36,11 @@ The scripts used to create the phenotype data, as well as intermediate data file
 ***Part 1: Navigate the BioData Catalyst environment***
 Learn how to search and export data from Gen3 and worfklows from Dockstore into a Terra workspace. 
 
-
 ***Part 2: Reformat Gen3 phenotypic data for use in downstream analysis***
 Review the data you imported in Terra and use the interactive Jupyter notebook **1-Prepare-Gen3-data-for-exploration** to consolidate several clinical data tables into a single data table that can be used in the next notebook. This notebook calls functions in the companion notebook **terra_data_table_util**. 
 
 ***Part 3: Data exploration and preparation***
 The **2-GWAS-preliminary-analysis** notebook will lead you through a series of steps to explore the phenotypic and genotypic data and prepare files for import into association workflows. This is the most time and resource consuming analysis in the GWAS.
-
 
 ***Part 4: Perform mixed-model association tests using workflows***
 Next, perform mixed models genetic association tests (run as a series of batch workflows using GCP Compute engine). The workflows are also publicly available in [Dockstore](https://dockstore.org/) in this [collection](https://dockstore.org/organizations/bdcatalyst/collections/GWAS).       
@@ -55,15 +50,12 @@ Next, perform mixed models genetic association tests (run as a series of batch w
 # Part 1: Navigate the NHLBI BioData Catalyst ecosystem
 
 ## 1a. Link your Terra account to Gen3 using external services
-Before you're able to access genomic data from Gen3 in the Terra data table,  you need to link your Terra account to external services. Link your profile [by following these instructions](https://support.terra.bio/hc/en-us/articles/360038086332?flash_digest=2f492682b688b21da27c701af68656ac095d5803).
+Before you're able to access genomic data from Gen3 in the Terra data table, you need to link your Terra account to external services. If you have not already done so, link your profile [by following these instructions](https://support.terra.bio/hc/en-us/articles/360038086332).
 
 ## 1b. Create an Authorization Domain to protect your controlled-access data
-
 If you bring controlled access data into Terra, it should be registered under an Authorization Domain that limits its access to only researchers with the appropriate approvals. Learn how to set up an Authorization Domain [here](https://support.terra.bio/hc/en-us/articles/360039415171).
 
-
 ## 1c. Export the training dataset from Gen3 to Terra
-
 1. Start by learning about Gen3's graph-structured data model for NHLBI's BioData Catalyst using this [orientation document](https://support.terra.bio/hc/en-us/articles/360038087312).
 2. Once you better understand the graph, log into [Gen3](https://gen3.biodatacatalyst.nhlbi.nih.gov/) through the NIH portal using your eRA Commons username and password. 
 3. Navigate to the [Gen3 Explorer](https://gen3.biodatacatalyst.nhlbi.nih.gov/explorer) view to see what datasets you currently have and do not have access to. On the left hand side, you can use the faceted search tool to narrow your results to specific projects. 
@@ -78,7 +70,7 @@ Once the export window in Gen3 transitions to Terra, you are given a few options
 1) "Start with a template"
 This feature allows you to import data directly into a template workspace that has everything set up for you to do an analysis but does not contain any data. Once you select a workspace, you will need to enter:
 - Workspace name: Enter a name a name that is meaningful for your records.
-- Billing Project: Select the billing projects available to you. If you are a new user, you can use the [$300 of free credits offered](https://support.terra.bio/hc/en-us/articles/360027940952-Free-credits-FAQs).
+- Billing Project: Select the billing projects available to you. If you are a new user, you can use the [$300 of free credits offered](https://support.terra.bio/hc/en-us/articles/360046295092).
 - Authorization Domain: Assign the authorization domain that you generated above to protect your data. This is important for working with controlled access. data. 
 
 2) "Start with an existing workspace" 
@@ -101,7 +93,6 @@ Note: This consolidated_metadata table is closer to the data model you use in ou
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 # Part 3: Explore TOPMed data in Jupyter Notebooks   
-
 Now that you can interact with the Gen3 structured data more easily, you will use an interactive notebook to explore your phenotypic and environmental data and performs several analyses to prepare the data for use in batch association workflows. 
 
 1. [Learn how to customize your interactive analysis compute](https://support.terra.bio/hc/en-us/articles/360038125912) to work with the data you imported. Your computing needs will vary depending on the size of your VCF file. 
@@ -118,7 +109,6 @@ Now that you can interact with the Gen3 structured data more easily, you will us
 Note: VCF files you import from Gen3 are in the Reference_File node and are accessible via DRS URLs. For TOPMed Freeze 5b datasets, these are also tar compressed. We have this GWAS tutorial that has notebooks and examples for interacting with these VCFs [here](https://terra.biodatacatalyst.nhlbi.nih.gov/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait).
 
 ### Time and cost estimate 
-
 Time to execute all the commands is ~28 minutes which currently costs ~$0.50 to complete (with the recommended cluster configuration available inside the notebook).       
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
@@ -136,7 +126,7 @@ In the 2-GWAS-preliminary-analysis notebook, we created a Sample Set data table 
 
 #### [1-vcfToGds](https://dockstore.org/workflows/github.com/manning-lab/vcfToGds)
 
-This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](https://www.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
+This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](http://si.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
 
 ##### Time and cost estimates    
 
@@ -152,7 +142,8 @@ Outputs:
 
 #### [2-genesis_GWAS](https://dockstore.org/workflows/github.com/AnalysisCommons/genesis_wdl/genesis_GWAS)
 
-This workflow creates a null model from phenotype data with the GENESIS biostatistical package. This null model can then be used for association testing. This workflow also runs single variant and aggregate test for genetic data. Implements Single-variant, Burden, SKAT, SKAT-O and SMMAT tests for Continuous or Dichotomous outcomes. All tests account for familiar relatedness through kinship matrixes. Underlying functions adapted from: Conomos MP and Thornton T (2016). GENESIS: GENetic EStimation and Inference in Structured samples (GENESIS): Statistical methods for analyzing genetic data from samples with population structure and/or relatedness. R package version 2.3.4.        
+This workflow creates a null model from phenotype data with the [GENESIS biostatistical package](http://bioconductor.org/packages/devel/bioc/html/GENESIS.html). This null model can then be used for association testing. This workflow also runs single variant and aggregate test for genetic data. Implements Single-variant, Burden, SKAT, SKAT-O and SMMAT tests for Continuous or Dichotomous outcomes. All tests account for familiar relatedness through kinship matrixes. Underlying functions adapted from:
+	Conomos MP and Thornton T (2016). *GENESIS: GENetic EStimation and Inference in Structured samples (GENESIS): Statistical methods for analyzing genetic data from samples with population structure and/or relatedness.* R package version 2.2.7.
 
 ##### Time and cost estimates    
 
@@ -182,20 +173,19 @@ Outputs:
 Both the notebook and workflows can be adapted to other genetic datasets. The steps for adapting these tools to another dataset are outlined below:
 
 ***Update the data tables***  
-Learn more about uploading data to Terra [here](https://support.terra.bio/hc/en-us/articles/360025758392-Managing-data-with-the-data-table-).  
+Learn more about uploading data to Terra [here](https://support.terra.bio/hc/en-us/articles/360025758392).  
 
 ***Update the notebook***
 Accommodating other datasets may require modifying many parts of this notebook. Inherently, the notebook is an interactive analysis where decisions are made as you go. It is not recommended that the notebook be applied to another dataset without careful thought. 
 
 ***Run an additional workflow***
-You can search [Dockstore](www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
+You can search [Dockstore](https://www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
 
 
 ![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 ### Authors, contact information, and funding
-
-This template was created for the [NHLBI's BioData Catalyst](https://www.nhlbidatastage.org/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
+This template was created for the [NHLBI's BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
 
 Contributing authors include:
 * [Beth Sheets](mailto:esheets@ucsc.edu) (UC Santa Cruz Genomics Institute)
@@ -210,7 +200,6 @@ Contributing authors include:
 ----
 
 ### Workspace change log 
-
 | Date | Change | Author | 
 | -------  | -------- | -------- |
 | March 13, 2020 | Created notebook | Beth |
