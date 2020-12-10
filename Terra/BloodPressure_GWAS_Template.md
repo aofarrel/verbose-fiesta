@@ -1,6 +1,6 @@
 # Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst BACKUP
 
-This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360007757832). If you're ready to conduct an analysis, proceed with this dashboard: 
+This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360008068731-BDC-category). If you're ready to conduct an analysis, proceed with this dashboard: 
 
 
 ## Data Model
