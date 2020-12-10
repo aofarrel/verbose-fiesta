@@ -1,6 +1,6 @@
 # Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst BACKUP
 
-This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://www.nhlbidatastage.org/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360007757832). If you're ready to conduct an analysis, proceed with this dashboard: 
+This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360007757832). If you're ready to conduct an analysis, proceed with this dashboard: 
 
 
 ## Data Model
@@ -111,14 +111,14 @@ Now that you can interact with the Gen3 structured data more easily, you will us
 You can adjust the runtime configuration to fit your computational needs in the Jupyter notebook. We recommend selecting the default environment and selecting the custom profile to use and configure the spark cluster for parallel processing.  Using the profile suggested profile within the Jupyter notebook and a project with around 1000 samples, running this notebook on this dataset takes about 90 minutes and $20/hr to compute.
  
 
-When working in a notebook with computing times over 30 minutes, learn more about Terra's [auto-pause feature](https://support.terra.bio/hc/en-us/articles/360029761352-What-you-need-to-know-about-notebook-auto-pause-) and [how to adjust auto-pause](https://support.terra.bio/hc/en-us/articles/360027570951-Manually-setting-auto-pause-for-notebooks-using-gsutil) for your needs. Please carefully consider how adjusting auto-pause can remove protections that help you from accidentally accumulating cloud costs that you did not need.
+When working in a notebook with computing times over 30 minutes, learn more about Terra's [auto-pause feature](https://support.terra.bio/hc/en-us/articles/360029761352) and [how to adjust auto-pause](https://support.terra.bio/hc/en-us/articles/360027020412) for your needs. Please carefully consider how adjusting auto-pause can remove protections that help you from accidentally accumulating cloud costs that you did not need.
 
 -----
 
 # Part 3: Perform mixed-model association tests using workflows
 In Part 2, we explored the data we imported from Gen3 and performed a few important steps for preparing our data for association testing. We generated a new "sample_set" data table that holds the files we created in the interactive notebook. These files will be used in our batch workflows that will perform the association tests. Below, we describe the four workflows in this workspace and their cost estimates for running on the sample set we create in this tutorial.  
 
-The workflows used in this template were imported from [Dockstore](www.dockstore.org) and their parameters were configured to work with Terra's data model.  If you're interested in searching other Docker-based workflows, [learn more about how they can easily be launched in Terra](https://support.terra.bio/hc/en-us/articles/360038137292).
+The workflows used in this template were imported from [Dockstore](https://www.dockstore.org) and their parameters were configured to work with Terra's data model.  If you're interested in searching other Docker-based workflows, [learn more about how they can easily be launched in Terra](https://support.terra.bio/hc/en-us/articles/360038137292).
 
 ## Notes on how attributes are set in workflows
 We have set the input and output attributes for each workflow in this template. Before running the first workflow, you can look through the inputs and outputs of each workflow and see that outputs from the first workflow feed into the second workflow, and so on. 
@@ -128,7 +128,7 @@ In the 2-GWAS-preliminary-analysis notebook, we created a Sample Set data table 
 
 #### [1-vcfToGds](https://dockstore.org/workflows/github.com/manning-lab/vcfToGds)
 
-This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](https://www.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
+This workflow converts genotype files from Variant Call Format ([VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)) to Genomic Data Structure ([GDS](http://si.biostat.washington.edu/sites/default/files/modules/GDS_intro.pdf)), the input format required by the R package GENESIS.       
 
 ##### Time and cost estimates    
 
@@ -190,12 +190,12 @@ Both the notebook and workflow can be adapted to other genetic datasets. The ste
 Accommodating other datasets may require modifying many parts of this notebook. Inherently, the notebook is an interactive analysis where decisions are made as you go. It is not recommended that the notebook be applied to another dataset without careful thought. 
 
 ***Run an additional workflow***
-You can search [Dockstore](www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
+You can search [Dockstore](https://www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
 
 
 ### Helpful resources to master this tutorial
 
-* If you have never used Terra before, peruse the [Terra knowledge base](https://support.terra.bio/hc/en-us). You can also [physically attend](https://support.terra.bio/hc/en-us/articles/360031181251-Terra-1-day-Workshop-) or [watch a recording](https://support.terra.bio/hc/en-us/articles/360031719611-Terra-workshop-at-BroadE-July-25-2019) of one of the Broad Institute Introduction to Terra workshops. 
+* If you have never used Terra before, peruse the [Terra knowledge base](https://support.terra.bio/hc/en-us). You can also [physically attend](https://support.terra.bio/hc/en-us/articles/360031181251) or [watch a recording](https://support.terra.bio/hc/en-us/articles/360031719611) of one of the Broad Institute Introduction to Terra workshops. 
 
 * [Controlling cloud costs](https://support.terra.bio/hc/en-us/articles/360029748111)
 
@@ -208,7 +208,7 @@ You can search [Dockstore](www.dockstore.org) for available workflows and export
 
 ### Authors, contact information, and funding
 
-This template was created for the [NHLBI's BioData Catalyst](https://www.nhlbidatastage.org/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
+This template was created for the [NHLBI's BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
 
 Contributing authors include:
 * [Beth Sheets](mailto:esheets@ucsc.edu) (UC Santa Cruz Genomics Institute)
@@ -231,4 +231,4 @@ Contributing authors include:
 | Jan 3, 2020 | Updates from BDC F2F | Beth |
 | December 3, 2019 | Gen3 updates | Beth |
 | November 22, 2019 | Updates from Alisa | Beth |
-|  October 22, 2019 | User experience edits from Beri | Beth|
+| October 22, 2019 | User experience edits from Beri | Beth|
