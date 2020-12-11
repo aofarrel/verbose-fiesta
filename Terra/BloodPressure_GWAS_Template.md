@@ -195,7 +195,7 @@ You can search [Dockstore](https://www.dockstore.org) for available workflows an
 
 ### Helpful resources to master this tutorial
 
-* If you have never used Terra before, peruse the [Terra knowledge base](https://support.terra.bio/hc/en-us). You can also [physically attend](https://support.terra.bio/hc/en-us/articles/360031181251) or [watch a recording](https://support.terra.bio/hc/en-us/articles/360031719611) of one of the Broad Institute Introduction to Terra workshops. 
+* If you are new to BioData Catalyst powered by Terra, we have created an [onboarding syllabus](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra/onboarding-syllabus-using-gen3-terra-dockstore-and-pic-sure) that includes several introductory webinars.
 
 * [Controlling cloud costs](https://support.terra.bio/hc/en-us/articles/360029748111)
 
