@@ -216,6 +216,7 @@ Contributing authors include:
 * Brian Hannafious (UC Santa Cruz Genomics Institute)
 * [Tim Majarian](mailto:tmajaria@broadinsitute.org) (Manning Lab)
 * Alisa Manning (Manning Lab)
+* Ash O'Farrell (UC Santa Cruz Genomics Institute)
 
 
 ----
