@@ -205,4 +205,5 @@ Contributing authors include:
 | March 13, 2020 | Created notebook | Beth |
 | April 7, 2020 | Reviewed dashboard and tested notebooks and workflows | Beth |
 | June 26, 2020 | terra_data_table_util & codefolding updates | Beth |
-| December 7, 2020 | Updated notebooks | Ash |
+| December 9, 2020 | Updated notebooks | Ash |
+| January 7, 2021 | Update workspace text, hotfix second workflow, split second notebook into three | Ash |
