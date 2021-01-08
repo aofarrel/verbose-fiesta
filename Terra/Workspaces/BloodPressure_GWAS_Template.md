@@ -1,4 +1,4 @@
-# Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst BACKUP
+# Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst
 
 This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360008068731-BDC-category). If you're ready to conduct an analysis, proceed with this dashboard: 
 
@@ -225,6 +225,7 @@ Contributing authors include:
 
 | Date | Change | Author | 
 | -------  | -------- | -------- |
+| January 5, 2020 | Split second notebook into two (for a total of three)†, general notebook updates | Ash |
 | December 9, 2020 | Update notebooks, workflows, and workspace markdown | Ash |
 | June 26, 2020 | terra_data_table_util updates | Beth |
 | Feb 26, 2020 | Added notebook to copy/extract VCF | Beth |
@@ -234,3 +235,5 @@ Contributing authors include:
 | December 3, 2019 | Gen3 updates | Beth |
 | November 22, 2019 | Updates from Alisa | Beth |
 | October 22, 2019 | User experience edits from Beri | Beth|
+
+† This was performed in the interest of clarity and cost-savings by minimizing the time spent using Hail.
