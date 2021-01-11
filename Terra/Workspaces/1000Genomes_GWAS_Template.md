@@ -2,16 +2,12 @@
 
 This tutorial workspace offers example tools for conducting mixed-models GWAS from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We've created a set of documents [to get you started in the BioData Catalyst system](https://bdcatalyst.gitbook.io/biodata-catalyst-documentation/analyze-data/terra). If you're ready to conduct an analysis, proceed with this dashboard: 
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 ## Data Model
 This template was set up to work with the NHLBI BioData Catalyst Gen3 data model. In this dashboard, you'll learn how to import open access data from the Gen3 platform into this Terra template and conduct an association test. If you have never used the Gen3 data model before, we suggest you start with the tutorial [Getting Started with Gen3 Data in Terra](https://terra.biodatacatalyst.nhlbi.nih.gov/#workspaces/fc-product-demo/BioDataCatalyst-Gen3-data-on-Terra-Tutorial).
 
 For this tutorial, we are using synthetic phenotypic data coupled with downsampled 1000 Genomes data that has been ingested into NHLBI BioData Catalyst Powered by Gen3. This data model is likely new to most users and may take some time to become accustomed to. First, the data model is based on a graph structure that is more complex than a single columns x rows data table that you may be familiar with. Second, genomic data is accessible through DRS URLs that point to Google Cloud Buckets that hold the data. 
 
 After this tutorial, you can employ the BioData Catalyst ecosystem for more analyses. Currently, BioData Catalyst's Gen3 hosts the [TOPMed](https://www.nhlbi.nih.gov/science/trans-omics-precision-medicine-topmed-program) program, which is controlled access, in addition to the public data used in this tutorial. To apply for access to TOPMed, submit an application through [dbGAP](https://www.nhlbiwgs.org/topmed-data-access-scientific-community). If you already have access to a TOPMed project and have been onboarded to the BioData Catalyst platform, you should be able to access your data through BioData Catalyst Powered By Gen3 and use your data with another GWAS resource we have created that you can access [here](https://app.terra.bio/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait). 
-
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 ## About the data
 To demonstrate an analysis that could be run on typical whole genome sequence data, this workspace provides mock phenotype data generated from publicly available 1000 Genomes phase 3 genotypes. Phenotypes have been simulated based on individual genotypes and known associated loci for multiple complex traits. The GCTA software was used with lists of causal variants and an estimate of narrow sense heritability for each phenotype.
@@ -30,8 +26,6 @@ i. Triglycerides: MVP
 **Generating the synthetic data**
 The scripts used to create the phenotype data, as well as intermediate data files and a readme file, are in a public Google bucket (gs://terra-featured-workspaces/GWAS/data_processing/). To browse the Google bucket, click [here](https://console.cloud.google.com/storage/browser/terra-featured-workspaces/GWAS/data_processing).
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 ## Tutorial outline
 ***Part 1: Navigate the BioData Catalyst environment***
 Learn how to search and export data from Gen3 and worfklows from Dockstore into a Terra workspace. 
@@ -40,12 +34,10 @@ Learn how to search and export data from Gen3 and worfklows from Dockstore into 
 Review the data you imported in Terra and use the interactive Jupyter notebook **1-Prepare-Gen3-data-for-exploration** to consolidate several clinical data tables into a single data table that can be used in the next notebook. This notebook calls functions in the companion notebook **terra_data_table_util**. 
 
 ***Part 3: Data exploration and preparation***
-The **2-GWAS-preliminary-analysis** notebook will lead you through a series of steps to explore the phenotypic and genotypic data and prepare files for import into association workflows. This is the most time and resource consuming analysis in the GWAS.
+The **2-GWAS-preliminary-analysis** notebook will lead you through a series of steps to explore the phenotypic data. The final notebook **3-GWAS-genomic-data-preparation** focuses on genotypic data and finalizes the preparation of files for import into association workflows. This third notebook is the most time and resource consuming analysis in the GWAS.
 
 ***Part 4: Perform mixed-model association tests using workflows***
 Next, perform mixed models genetic association tests (run as a series of batch workflows using GCP Compute engine). The workflows are also publicly available in [Dockstore](https://dockstore.org/) in this [collection](https://dockstore.org/organizations/bdcatalyst/collections/GWAS).       
-
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 # Part 1: Navigate the NHLBI BioData Catalyst ecosystem
 
@@ -79,8 +71,6 @@ If you have already created a workspace, you can import your data directly to th
 3) "Start a new workspace"
 This will create an empty workspace. You can individually copy notebooks and workflows from other workspaces, import workflows from Dockstore, or start fresh.
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 # Part 2: Reformat Gen3 phenotypic data for use in downstream analysis
 If you have not used the Gen3 data model before, we recommend you first start with this tutorial [Getting Started with Gen3 Data in Terra](https://terra.biodatacatalyst.nhlbi.nih.gov/#workspaces/fc-product-demo/BioDataCatalyst-Gen3-data-on-Terra-Tutorial) and then come back to this step in the GWAS.
 
@@ -90,28 +80,24 @@ If you have not used the Gen3 data model before, we recommend you first start wi
 
 Note: This consolidated_metadata table is closer to the data model you use in our "Featured Workspaces".  We hope these two notebooks (1-Prepare-Gen3-data-for-exploration, terra_data_table_util) help you use Gen3 data with more of our training resources in Terra.       
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 # Part 3: Explore TOPMed data in Jupyter Notebooks   
 Now that you can interact with the Gen3 structured data more easily, you will use an interactive notebook to explore your phenotypic and environmental data and performs several analyses to prepare the data for use in batch association workflows. 
 
 1. [Learn how to customize your interactive analysis compute](https://support.terra.bio/hc/en-us/articles/360038125912) to work with the data you imported. Your computing needs will vary depending on the size of your VCF file. 
-3. Open the **2-GWAS-preliminary-analysis** notebook and set your runtime configuration. We have given a suggested configuration within the notebook for a downsampled VCF (representing chromosomes 10 and 11) that we include for training purposes.
-4. Call functions from the terra_data_util notebook to reformat multiple data tables into a single data table that can be loaded as a dataframe in the notebook.
-5. Subset the dataframe to include only your traits of interest and remove any individuals that lack data for these traits.
-6. Visualize phenotype and environmental variable distributions in a series of plots.
-8. Filter your VCF to only common variants to increase statistical power. Genetic analyses in this notebook utilize the [Hail software](https://hail.is/). Hail is a framework for distributed computing with a focus on genetics. Particularly relevant for whole genome sequence ([WGS](https://en.wikipedia.org/wiki/Whole_genome_sequencing)) analysis, Hail allows for efficient, nearly boundless computing (in terms of variant and sample size).    
-9. Perform a principal component analysis ([PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)) to assess population stratification. Genetic stratification can strongly affect association tests and should be accounted for.
-10. Generate a genetic relatedness matrix ([GRM](https://hail.is/docs/0.2/methods/genetics.html?highlight=pc_rel#hail.methods.genetic_relatedness_matrix)) to account for closely related individuals in your association testing workflows.
-11. Generate a new "sample_set" data table that holds the derived files we created in the steps above using the [FireCloud Service Selector (FISS) package](https://github.com/broadinstitute/fiss).  The files in this data table will be used in the workflows we run in Part 4.     
-
+2. Open the **2-GWAS-preliminary-analysis** notebook. You will notice that it uses a similar runtime configuration to what Terra the previous notebook used.
+3. Call functions from the terra_data_util notebook to reformat multiple data tables into a single data table that can be loaded as a dataframe in the notebook.
+4. Subset the dataframe to include only your traits of interest and remove any individuals that lack data for these traits.
+5. Visualize phenotype and environmental variable distributions in a series of plots.
+6. Save your resulting data to your bucket, and open the **3-GWAS-genomic-data-preparation** notebook and set your runtime configuration. We have given a suggested configuration within the notebook for a downsampled VCF (representing chromosomes 10 and 11) that we include for training purposes.
+7. Filter your VCF to only common variants to increase statistical power. Genetic analyses in this notebook utilize the [Hail software](https://hail.is/). Hail is a framework for distributed computing with a focus on genetics. Particularly relevant for whole genome sequence ([WGS](https://en.wikipedia.org/wiki/Whole_genome_sequencing)) analysis, Hail allows for efficient, nearly boundless computing (in terms of variant and sample size).    
+8. Perform a principal component analysis ([PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)) to assess population stratification. Genetic stratification can strongly affect association tests and should be accounted for.
+9. Generate a genetic relatedness matrix ([GRM](https://hail.is/docs/0.2/methods/genetics.html?highlight=pc_rel#hail.methods.genetic_relatedness_matrix)) to account for closely related individuals in your association testing workflows.
+10. Generate a new "sample_set" data table that holds the derived files we created in the steps above using the [FireCloud Service Selector (FISS) package](https://github.com/broadinstitute/fiss).  The files in this data table will be used in the workflows we run in Part 4.     
 
 Note: VCF files you import from Gen3 are in the Reference_File node and are accessible via DRS URLs. For TOPMed Freeze 5b datasets, these are also tar compressed. We have this GWAS tutorial that has notebooks and examples for interacting with these VCFs [here](https://terra.biodatacatalyst.nhlbi.nih.gov/#workspaces/biodata-catalyst/BioData%20Catalyst%20GWAS%20blood%20pressure%20trait).
 
 ### Time and cost estimate 
 Time to execute all the commands is ~28 minutes which currently costs ~$0.50 to complete (with the recommended cluster configuration available inside the notebook).       
-
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
 
 # Part 4: Perform mixed-model association tests using workflows
 In Part 3, we explored the data we imported from Gen3 and performed a few important steps for preparing our data for association testing. We generated a new "sample_set" data table that holds the files we created in the interactive notebook. These files will be used in our batch workflows that will perform the association tests. Below, we describe the four workflows in this workspace and their cost estimates for running on the sample set we create in this tutorial.  
@@ -167,8 +153,6 @@ Outputs:
 * PNG file of Quantile-Quantile and Manhattan plots
 
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 # Optional: Bring your own data
 Both the notebook and workflows can be adapted to other genetic datasets. The steps for adapting these tools to another dataset are outlined below:
 
@@ -182,8 +166,6 @@ Accommodating other datasets may require modifying many parts of this notebook. 
 You can search [Dockstore](https://www.dockstore.org) for available workflows and export them to Terra following [this method](https://docs.dockstore.org/en/develop/launch-with/terra-launch-with.html). 
 
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)  
-
 ### Authors, contact information, and funding
 This template was created for the [NHLBI's BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) project in collaboration with the [Computational Genomics Platform](https://cgpgenomics.ucsc.edu/) at [UCSC Genomics Institute](https://ucscgenomics.soe.ucsc.edu/) and the [Data Sciences Platform](https://www.broadinstitute.org/data-sciences-platform) at [The Broad Institute](https://www.broadinstitute.org/). The association analysis tools were contributed by the [Manning Lab](https://manning-lab.github.io/).
 
@@ -195,8 +177,6 @@ Contributing authors include:
 * Alisa Manning (Manning Lab)
 
 
-![white space](https://storage.cloud.google.com/terra-featured-workspaces/QuickStart/white-space.jpg)     
-
 ----
 
 ### Workspace change log 
@@ -205,4 +185,5 @@ Contributing authors include:
 | March 13, 2020 | Created notebook | Beth |
 | April 7, 2020 | Reviewed dashboard and tested notebooks and workflows | Beth |
 | June 26, 2020 | terra_data_table_util & codefolding updates | Beth |
-| December 7, 2020 | Updated notebooks | Ash |
+| December 9, 2020 | Updated notebooks | Ash |
+| January 7, 2021 | Update workspace text, hotfix second workflow, split second notebook into three | Ash |
