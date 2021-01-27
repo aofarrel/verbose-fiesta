@@ -32,7 +32,7 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 ‎ ‎ |_ 📁 Images  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation  
 ‎ ‎ |_ 📁 Workspaces  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **1000Genomes_GWAS_Template.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **1000 Genomes_GWAS_Template.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the 1000 Genomes GWAS tutorial template workspace on Terra   
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on a certain group of open data, including mock phenotypic data  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
