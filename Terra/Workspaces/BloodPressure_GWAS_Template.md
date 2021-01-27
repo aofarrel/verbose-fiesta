@@ -76,7 +76,8 @@ This will create an empty workspace. You can individually copy notebooks and wor
 
 -----
 
-# Part 2: Explore TOPMed data in Jupyter Notebooks   
+# Part 2: Explore TOPMed data in Jupyter Notebooks  
+There are three notebooks in this workspace. The first and second one use similiar computational resources, but are seperated as you may want to re-run your preliminary GWAS analysis (the focus of the second notebook) more than once, without unarchiving VCFs more than once (the focus of the first notebook). The third notebook is seperate because it requires a much larger compute cluster than the other two notebooks. Overall, this splitting of notebooks into three saves on computation costs.
 ## 2a)  Extract multi-sample VCFs to your workspace 
 Gen3 uploaded tar compressed bundles, as they are provided by dbGAP, into cloud buckets owned by BioData Catalyst. To make these tar files actionable and ready for use in analyses, users will need to unarchive these tar bundlers to their workspace. 
 
@@ -92,7 +93,7 @@ Now that you can interact with the Gen3 structured data more easily, you will us
 5. Copy your data into your workspace bucket.
 
 ## 2c) Prepare your genomic data for input into association test workflows
-The split between 2b and 2c is somewhat artificial -- we split them into two seperate notebooks in order to minimize the amount of time users need to run Hail. Further information is included in the beginning of the third notebook.
+Continue your GWAS analysis in this notebook, which uses Hail alongside a powerful compute cluster. Further information on how Hail works is given in the notebook itself.
 1. [Learn how to customize your interactive analysis compute](https://support.terra.bio/hc/en-us/articles/360038125912) to work with the data you imported. 
 2. Import the multi-sample VCF from the "Reference File" data table using DRS. You can learn more about GA4GH's Data Repository Service [here](https://support.terra.bio/hc/en-us/articles/360039330211).
 3. Filter your VCF to only common variants to increase statistical power. Genetic analyses in this notebook utilize the [Hail software](https://hail.is/). Hail is a framework for distributed computing with a focus on genetics. Particularly relevant for whole genome sequence ([WGS](https://en.wikipedia.org/wiki/Whole_genome_sequencing)) analysis, Hail allows for efficient, nearly boundless computing (in terms of variant and sample size).    
@@ -101,7 +102,9 @@ The split between 2b and 2c is somewhat artificial -- we split them into two sep
 6. Generate a new "sample_set" data table that holds the derived files we created in the steps above using the [FireCloud Service Selector (FISS) package](https://github.com/broadinstitute/fiss).  The files in this data table will be used in the workflows we run in Part 3.     
 
 ### Time and cost estimate
-You can adjust the runtime configuration to fit your computational needs in the Jupyter notebook. We suggest using the recommended computes as explained in each notebook. The third notebook will be your most expensive. Terra will provided a per-hour estimate of cost as you adjust settings of your compute environment. The first two notebooks can usually be completed in about 30 minutes total, or less. Be aware that if you are running on more than 1000 full-sized samples, the third notebook may take upwards of an hour to complete.
+You can adjust the runtime configuration to fit your computational needs in each Jupyter notebook. We suggest using the recommended default configuration for the first two notebooks. The third notebook should use the latest Hail image and the associated runtime environment must be a Spark cluster. However, the number of workers, CPUs, and memory will vary drastically based on your input files and cost/time needs. Within the notebook itself, we provide some rule of thumb examples for you to consider for your Spark cluster configuration. Terra will provided a per-hour estimate of cost as you adjust settings of your compute environment. 
+
+The first two notebooks can usually be completed in about 30 minutes total. Depending on your compute configuration and your data, the third notebook is very difficult to predict reliably, but you can assume it will take at least a few hours if running on Freeze 8 data, n>1000 samples.
 
 When working in a notebook with computing times over 30 minutes, learn more about Terra's [auto-pause feature](https://support.terra.bio/hc/en-us/articles/360029761352) and [how to adjust auto-pause](https://support.terra.bio/hc/en-us/articles/360027020412) for your needs. Please carefully consider how adjusting auto-pause can remove protections that help you from accidentally accumulating cloud costs that you did not need.
 
@@ -214,7 +217,7 @@ Contributing authors include:
 
 | Date | Change | Author | 
 | -------  | -------- | -------- |
-| January 8, 2020 | Split second notebook into two (for a total of three)†, general notebook updates, dashboard updates | Ash |
+| January 8, 2020 | Split second notebook into two (for a total of three) in the interest of clarity and cost-savings by minimizing the time spent using Hail. Also, general notebook updates, dashboard updates | Ash |
 | December 9, 2020 | Update notebooks, workflows, and workspace markdown | Ash |
 | June 26, 2020 | terra_data_table_util updates | Beth |
 | Feb 26, 2020 | Added notebook to copy/extract VCF | Beth |
@@ -224,5 +227,3 @@ Contributing authors include:
 | December 3, 2019 | Gen3 updates | Beth |
 | November 22, 2019 | Updates from Alisa | Beth |
 | October 22, 2019 | User experience edits from Beri | Beth|
-
-† This was performed in the interest of clarity and cost-savings by minimizing the time spent using Hail.
