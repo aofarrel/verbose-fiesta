@@ -11,36 +11,36 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 ## Index
 
 📁 Dockstore  
- ‎ |_ **Collection_TOPMedAligner.md**  
-  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [TOPMed organization's aligner collection](https://dockstore.org/organizations/topmed/collections/alignmentt)  
-‎ ‎ |_ **ORCID.md**    
-‎ ‎ |_ **ORCID.rst**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> rst ver of ORCID doc, images look broken but work in prod  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
-‎ ‎ |_ 📁 Images  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Dockstore documentation  
+‎ ‎ 📝 **Collection_TOPMedAligner.md**  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> mirrored from [TOPMed organization's aligner collection](https://dockstore.org/organizations/topmed/collections/alignmentt)  
+‎ ‎ 📝 **ORCID.md**    
+‎ ‎ 📝 **ORCID.rst**  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> rst ver of ORCID doc, images look broken but work in prod  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> mirrored from [my fork](https://github.com/aofarrel/dockstore-documentation/blob/develop/docs/end-user-topics/ORCID.rst), see [PR 79](https://github.com/dockstore/dockstore-documentation/pull/79)  
+‎ ‎ 📁 Images  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> Images related to Dockstore documentation  
 📁 Terra  
-‎ ‎ |_ **AnVIL_BYODtoTerra.md**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> AnVIL ver of BYOD overview (excludes Gen3)  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [DataBiosphere repo, AnVIL branch](https://github.com/DataBiosphere/BYOD-to-Terra/blob/anvil/full_documentation.md)  
-‎ ‎ |_ **BDC_BYODtoTerra.md**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> BioData Catalyst ver of BYOD overview (includes Gen3)  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
-‎ ‎ |_ **BDC_workflowTips.md**       
-‎ ‎ |_ **Introduction_to_Terra's_Terminal**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [this hackmd.io doc](https://hackmd.io/@AshedPotatoes/rkEb7PTHL)  
-‎ ‎ |_ 📁 Images  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation  
-‎ ‎ |_ 📁 Workspaces       
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **1000Genomes_GWAS_Template.md**  
+‎ ‎ ‎ 📝 **AnVIL_BYODtoTerra.md**  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> AnVIL ver of BYOD overview (excludes Gen3)  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> mirrored from [DataBiosphere repo, AnVIL branch](https://github.com/DataBiosphere/BYOD-to-Terra/blob/anvil/full_documentation.md)   
+‎ ‎ ‎ 📝 **BDC_BYODtoTerra.md**  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> BioData Catalyst ver of BYOD overview (includes Gen3)  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> mirrored from [DataBiosphere repo, master](https://github.com/DataBiosphere/BYOD-to-Terra/blob/master/full_documentation.md)  
+‎ ‎ ‎ 📝 **BDC_workflowTips.md**       
+‎ ‎ ‎ 📝 **Introduction_to_Terra's_Terminal**  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> mirrored from [this hackmd.io doc](https://hackmd.io/@AshedPotatoes/rkEb7PTHL)  
+‎ ‎ 📁 Images  
+‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> Images related to Terra documentation  
+‎ ‎ 📁 Workspaces       
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **1000Genomes_GWAS_Template.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the 1000 Genomes GWAS tutorial template workspace on Terra   
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on a certain group of open data, including mock phenotypic data  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **BloodPressure_GWAS_Template.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **BloodPressure_GWAS_Template.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the TOPMed GWAS tutorial template workspace on Terra  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on "real" data  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **TOPMedAligner_Featured_WS.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **TOPMedAligner_Featured_WS.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> planned featured workspace   
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **TOPMedAligner_Template_WS.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **TOPMedAligner_Template_WS.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [the Gen3 template workspace on Terra](https://app.terra.bio/#workspaces/biodata-catalyst/TOPMed%20Aligner%20Gen3%20Data)  
