@@ -32,13 +32,13 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 ‎ ‎ 📁 Images  
 ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏ --> Images related to Terra documentation  
 ‎ ‎ 📁 Workspaces       
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **1000Genomes_GWAS_Template.md**  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the 1000 Genomes GWAS tutorial template workspace on Terra   
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on a certain group of open data, including mock phenotypic data  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **BloodPressure_GWAS_Template.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the TOPMed GWAS tutorial template workspace on Terra  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on "real" data  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **ThousandGenomes_GWAS_Template.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the 1000 Genomes GWAS tutorial template workspace on Terra   
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on a certain group of open data, including mock phenotypic data  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏📝 **TOPMedAligner_Featured_WS.md**  
 ‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> planned featured workspace   
