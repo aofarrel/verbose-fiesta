@@ -29,9 +29,18 @@ Terra folder: Documentation related to [Terra](https:/terra.bio/), a Broad Insti
 ‎ ‎ |_ **BDC_workflowTips.md**       
 ‎ ‎ |_ **Introduction_to_Terra's_Terminal**  
  ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [this hackmd.io doc](https://hackmd.io/@AshedPotatoes/rkEb7PTHL)  
-‎ ‎ |_ **WS_TOPMedAligner_Featured_WS.md**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> planned featured workspace   
-‎ ‎ |_ **WS_TOPMedAligner_Template_WS.md**  
- ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [the Gen3 template workspace on Terra](https://app.terra.bio/#workspaces/biodata-catalyst/TOPMed%20Aligner%20Gen3%20Data)  
 ‎ ‎ |_ 📁 Images  
-‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ Images related to Terra documentation  
+‎ ‎ |_ 📁 Workspaces  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **1000Genomes_GWAS_Template.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the 1000 Genomes GWAS tutorial template workspace on Terra   
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on a certain group of open data, including mock phenotypic data  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **BloodPressure_GWAS_Template.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from the TOPMed GWAS tutorial template workspace on Terra  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> designed to be run on "real" data  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> the actual notebooks are mirroed in [the bdcat_notebooks repo](https://github.com/DataBiosphere/bdcat_notebooks/tree/master/notebooks)  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **TOPMedAligner_Featured_WS.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> planned featured workspace   
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏|_ **TOPMedAligner_Template_WS.md**  
+‎ ‏ ‎ ‎ ‎ ‏ ‏ ‏ ‏ ‎ ‎ ‎ ‏ ‏ ‏--> mirrored from [the Gen3 template workspace on Terra](https://app.terra.bio/#workspaces/biodata-catalyst/TOPMed%20Aligner%20Gen3%20Data)  
