@@ -1,3 +1,7 @@
+![Warning for users of Freeze 8 data. Please continue reading in the section below for more information.](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Terra/Images/freeze8warning.png)
+
+_February 2021 Update_: This template workspace was developed and tested using TOPMed Freeze 5b data. Initial scale testing with Freeze 8 data has raised scalability issues related to LD pruning and generating a Genetic Relatedness Matrix within the Hail Jupyter notebook. We do not suggest using Freeze 8 data with the Hail notebook and are looking into alternative tools. Some researchers may be able to use kinship matrices provided through the dbGAP TOPMed Combined Exchange Area. The current GENESIS WDL used for associating testing in this workspace has been updated for use with Freeze 8; it is the genomic data preparation notebook which has issues with Freeze 8."
+
 # Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst
 
 This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360008068731-BDC-category). If you're ready to conduct an analysis, proceed with this dashboard: 
@@ -217,13 +221,14 @@ Contributing authors include:
 
 | Date | Change | Author | 
 | -------  | -------- | -------- |
-| January 8, 2020 | Split second notebook into two (for a total of three) in the interest of clarity and cost-savings by minimizing the time spent using Hail. Also, general notebook updates, dashboard updates | Ash |
-| December 9, 2020 | Update notebooks, workflows, and workspace markdown | Ash |
+| Feb 3, 2020 | Added Freeze 8 disclaimer | Ash |
+| Jan 8, 2020 | Split second notebook into two (for a total of three) in the interest of clarity & cost-savings by minimizing the time spent using Hail. Also, general notebook & dashboard updates | Ash |
+| Dec 9, 2020 | Update notebooks, workflows, and workspace markdown | Ash |
 | June 26, 2020 | terra_data_table_util updates | Beth |
 | Feb 26, 2020 | Added notebook to copy/extract VCF | Beth |
 | Jan 31, 2020 | Replaced text with new Broad documentation | Beth |
 | Jan 30, 2020 | Template updates | Beth |
 | Jan 3, 2020 | Updates from BDC F2F | Beth |
-| December 3, 2019 | Gen3 updates | Beth |
-| November 22, 2019 | Updates from Alisa | Beth |
-| October 22, 2019 | User experience edits from Beri | Beth|
+| Dec 3, 2019 | Gen3 updates | Beth |
+| Nov 22, 2019 | Updates from Alisa | Beth |
+| Oct 22, 2019 | User experience edits from Beri | Beth|
