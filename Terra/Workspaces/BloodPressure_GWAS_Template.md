@@ -1,6 +1,6 @@
 ![Warning for users of Freeze 8 data. Please continue reading in the section below for more information.](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Terra/Images/freeze8warning.png)
 
-_February 2021 Update_: This template workspace was scaled for Freeze 5b data, and if you are using 5b data, might be acceptable for your use case. However, the third notebook in this workspace does not scale well on Freeze 8 (and above) data, even with heavy adjustments to the recommended compute cluster. We are working on a WDLized pipeline which scales better on Freeze 8 datasets.
+_February 2021 Update_: This template workspace was developed and tested using TOPMed Freeze 5b data. Initial scale testing with Freeze 8 data has raised scalability issues related to LD pruning and generating a Genetic Relatedness Matrix within the Hail Jupyter notebook. We do not suggest using Freeze 8 data with the Hail notebook and are looking into alternative tools. Some researchers may be able to use kinship matrices provided through the dbGAP TOPMed Combined Exchange Area. The current GENESIS WDL used for associating testing in this workspace has been updated for use with Freeze 8; it is the genomic data preparation notebook which has issues with Freeze 8."
 
 # Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst
 
