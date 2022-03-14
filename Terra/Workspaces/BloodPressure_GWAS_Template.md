@@ -1,3 +1,10 @@
+![Warning for users of Freeze 8 data. Please continue reading in the section below for more information.](https://raw.githubusercontent.com/aofarrel/verbose-fiesta/master/Terra/Images/freeze8warning.png)
+
+_February 2021 Update_: This template workspace was scaled for Freeze 5b data, and if you are using 5b data, might be acceptable for your use case. However, the third notebook in this workspace does NOT scale well on Freeze 8 (and above) data, even with heavy adjustments to the recommended compute cluster. We are working on a WDLized pipeline which scales better on Freeze 8 and above datasets.
+
+The issue is not a change in formating, it is that Freeze 8 data has many more variants. If you are familiar with your data, have stable internet, are knowledgable on the proper way to scale the Hail ld_prune() function on Spark, and know how to properly partition Hail matrix tables, this workspace is technically compatiable with Freeze 8 data and *may* work for your purposes, especially if you are dealing with a small number of subjects (less than a few hundred). Nevertheless, we only recommend using this on Freeze 5b data for now, and on less than 5000 subjects.
+
+
 # Template Blood Pressure Trait GWAS in NHLBI's BioData Catalyst
 
 This template workspace was created to offer example tools for conducting a single variant, mixed-models GWAS focusing on a blood pressure trait from start to finish using the [NHLBI BioData Catalyst](https://biodatacatalyst.nhlbi.nih.gov/) ecosystem. We have created a set of documents [to get you started in the BioData Catalyst system](https://support.terra.bio/hc/en-us/sections/360008068731-BDC-category). If you're ready to conduct an analysis, proceed with this dashboard: 
